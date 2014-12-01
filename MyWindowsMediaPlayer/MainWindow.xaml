@@ -3,18 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MyWindowsMediaPlayer" Height="350" Width="525">
     <Grid>
-        <ListBox HorizontalAlignment="Left" Height="239" Margin="10,38,0,0" VerticalAlignment="Top" Width="165"/>
-        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer" HorizontalAlignment="Left" Margin="10,282,0,0" VerticalAlignment="Top" Width="80" Height="28"/>
-        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" HorizontalAlignment="Left" Margin="95,282,0,0" VerticalAlignment="Top" Width="80" Height="28" RenderTransformOrigin="0.862,0.571"/>
-        <TextBlock FontWeight="Bold" Foreground="DodgerBlue" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="165"><Run Language="fr-fr" Text="Mes Playlists"/></TextBlock>
-        <Image x:Name="img" Margin="180,10,10,10" />
-        <TextBlock FontWeight="Bold" Foreground="DodgerBlue" TextAlignment="Center" HorizontalAlignment="Left" Margin="180,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="327"><Run Language="fr-fr" Text="Current Media"/></TextBlock>
-        <TabControl HorizontalAlignment="Left" Height="100" Margin="255,181,0,0" VerticalAlignment="Top" Width="100">
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
+        <TextBlock FontWeight="Bold" Foreground="DodgerBlue" TextAlignment="Center" HorizontalAlignment="Left" Margin="236,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="271"><Run Language="fr-fr" Text="Current Media"/></TextBlock>
+        <Image x:Name="img" Margin="236,38,10,10" />
+
+        <TabControl HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="221">
+            <TabItem Header="Playlists">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalAlignment="Left" Height="240" VerticalAlignment="Top" Width="211" Grid.ColumnSpan="2"/>
+                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer" HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
+                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" HorizontalAlignment="Left" Margin="140,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
+                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Editer" HorizontalAlignment="Left" Margin="70,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="TabItem2">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Photos">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalAlignment="Left" Height="268" VerticalAlignment="Top" Width="211"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Videos">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalAlignment="Left" Height="268" VerticalAlignment="Top" Width="211" Grid.ColumnSpan="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Musique">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalAlignment="Left" Height="268" VerticalAlignment="Top" Width="211"/>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
