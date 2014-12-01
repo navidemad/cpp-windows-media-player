@@ -9,7 +9,7 @@
         <TabControl HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="221">
             <TabItem Header="Playlists" Height="23" VerticalAlignment="Bottom">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox ItemsSource="{ Binding PlayListViewModel.Playlists }" SelectedItem="{ Binding PlayListViewModel.CurrentPlaylist }" HorizontalAlignment="Left" Height="240" VerticalAlignment="Top" Width="211" Grid.ColumnSpan="2">
+                    <ListBox ItemsSource="{ Binding PlayListViewModel.Playlists }" SelectedItem="{ Binding PlayListViewModel.CurrentPlaylist }" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="211">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -18,9 +18,9 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <Button Command="{ Binding PlayListViewModel.Add }" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer" HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
-                    <Button Command="{ Binding PlayListViewModel.Edit }" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Editer" HorizontalAlignment="Left" Margin="70,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
-                    <Button Command="{ Binding PlayListViewModel.Delete }" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" HorizontalAlignment="Left" Margin="140,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
+                    <Button Command="{ Binding PlayListViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer" HorizontalAlignment="Left" Margin="0,240,0,-3" VerticalAlignment="Top" Width="60" Height="28"/>
+                    <Button Command="{ Binding PlayListViewModel.Edit }" CommandParameter="{ Binding PlayListViewModel.CurrentPlaylist }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Editer" HorizontalAlignment="Left" Margin="65,240,0,-3" VerticalAlignment="Top" Width="60" Height="28"/>
+                    <Button Command="{ Binding PlayListViewModel.Delete }" CommandParameter="{ Binding PlayListViewModel.CurrentPlaylist }" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" HorizontalAlignment="Left" Margin="130,240,0,-3" VerticalAlignment="Top" Width="81" Height="28"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Photos">

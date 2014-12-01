@@ -18,8 +18,8 @@ namespace MyWindowsMediaPlayer.ViewModel
             {
                 _CurrentPlaylist = value;
                 RaisePropertyChanged("CurrentPlaylist");
-                RaisePropertyChanged("CanDelete");
                 Delete.RaiseCanExecuteChanged();
+                Edit.RaiseCanExecuteChanged();
             }
         }
 
