@@ -7,12 +7,12 @@
         <Image x:Name="img" Margin="236,38,10,10" />
 
         <TabControl HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="221">
-            <TabItem Header="Playlists">
+            <TabItem Header="Playlists" Height="23" VerticalAlignment="Bottom">
                 <Grid Background="#FFE5E5E5">
                     <ListBox HorizontalAlignment="Left" Height="240" VerticalAlignment="Top" Width="211" Grid.ColumnSpan="2"/>
-                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer" HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
-                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" HorizontalAlignment="Left" Margin="140,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
-                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Editer" HorizontalAlignment="Left" Margin="70,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
+                    <Button Command="{ Binding PlayListViewModel.Add }" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer" HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
+                    <Button Command="{ Binding PlayListViewModel.Edit }" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Editer" HorizontalAlignment="Left" Margin="70,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
+                    <Button Command="{ Binding PlayListViewModel.Delete }" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" HorizontalAlignment="Left" Margin="140,240,0,0" VerticalAlignment="Top" Width="70" Height="28"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Photos">
@@ -27,7 +27,7 @@
             </TabItem>
             <TabItem Header="Musique">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox HorizontalAlignment="Left" Height="268" VerticalAlignment="Top" Width="211"/>
+                    <ListBox HorizontalAlignment="Left" Height="268" VerticalAlignment="Top" Width="211" />
                 </Grid>
             </TabItem>
         </TabControl>

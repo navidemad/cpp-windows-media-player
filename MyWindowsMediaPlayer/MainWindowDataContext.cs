@@ -8,6 +8,6 @@ namespace MyWindowsMediaPlayer
 {
     class MainWindowDataContext
     {
-        public PlayListViewModel PlayListViewModel { get; set; }
+        public ViewModel.PlayListViewModel PlayListViewModel { get; set; }
     }
 }

@@ -54,6 +54,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\EditPlaylistCommand.cs" />
+    <Compile Include="ViewModel\ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,6 +64,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Command\Command.cs" />
+    <Compile Include="Command\AddPlaylistCommand.cs" />
+    <Compile Include="Command\DeletePlaylistCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -69,6 +74,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindowDataContext.cs" />
+    <Compile Include="Model\Media.cs" />
+    <Compile Include="Model\Music.cs" />
+    <Compile Include="Model\Picture.cs" />
+    <Compile Include="Model\Playlist.cs" />
+    <Compile Include="Model\Video.cs" />
     <Compile Include="ViewModel\PlayListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -97,7 +107,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
