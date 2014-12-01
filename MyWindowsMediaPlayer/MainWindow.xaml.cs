@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 namespace MyWindowsMediaPlayer
 {
+
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
@@ -23,6 +24,18 @@ namespace MyWindowsMediaPlayer
         public MainWindow()
         {
             InitializeComponent();
+
+            /*
+            ** set dataContext
+            */
+            MainWindowDataContext mainWindowDataContext = new MainWindowDataContext();
+            mainWindowDataContext.PlayListViewModel = new PlayListViewModel();
+            DataContext = mainWindowDataContext;
+
+            /*
+            ** display main window image
+            */
+            //img.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "images/WindowsMediaPlayerLogo.jpg"));
         }
     }
 }
