@@ -32,13 +32,23 @@ namespace MyWindowsMediaPlayer.ViewModel
             // static data in order to test display and features
             Playlists = new System.Collections.ObjectModel.ObservableCollection<Model.Playlist> {
                 new Model.Playlist {
+                    Name = "Playlist 1",
+                    Medias = new System.Collections.ObjectModel.ObservableCollection<Model.Media> {
+                        new Model.Music { Path = "Path1", Name = "Music" },
+                        new Model.Picture { Path = "Path2", Name = "Picture" },
+                        new Model.Video { Path = "Path3", Name = "Video" }
+                    }
+                },
+
+                new Model.Playlist {
+                    Name = "Playlist 2",
                     Medias = new System.Collections.ObjectModel.ObservableCollection<Model.Media> {
                         new Model.Music { Path = "Path1", Name = "Music" },
                         new Model.Picture { Path = "Path2", Name = "Picture" },
                         new Model.Video { Path = "Path3", Name = "Video" }
                     }
                 }
-            };
+};
         }
 
         public void RemovePlaylist(Model.Playlist playlist)
