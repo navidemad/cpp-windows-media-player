@@ -24,7 +24,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         public MusicViewModel()
         {
-            Add = new Command.AddMusicCommand();
+            Add = new Command.AddMusicCommand(AddMusic);
             Delete = new Command.DeleteMusicCommand();
 
             // static data in order to test display and features
@@ -35,12 +35,12 @@ namespace MyWindowsMediaPlayer.ViewModel
             };
         }
 
-        public void RemovePlaylist(Model.Music music)
+        public void RemoveMusic(Model.Music music)
         {
             Musics.Remove(music);
         }
 
-        public void AddPlaylist(Model.Music music)
+        public void AddMusic(Model.Music music)
         {
             Musics.Add(music);
         }

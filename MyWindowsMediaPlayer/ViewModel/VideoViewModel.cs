@@ -24,7 +24,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         public VideoViewModel()
         {
-            Add = new Command.AddVideoCommand();
+            Add = new Command.AddVideoCommand(AddVideo);
             Delete = new Command.DeleteVideoCommand();
 
             // static data in order to test display and features

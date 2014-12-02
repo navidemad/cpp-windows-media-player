@@ -24,7 +24,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         public PictureViewModel()
         {
-            Add = new Command.AddPictureCommand();
+            Add = new Command.AddPictureCommand(AddPicture);
             Delete = new Command.DeletePictureCommand();
 
             // static data in order to test display and features

@@ -62,7 +62,7 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Command="{ Binding PictureViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer"/>
+                        <Button Grid.Column="0" Command="{ Binding PictureViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Ajouter"/>
                         <Button Grid.Column="1" Command="{ Binding PictureViewModel.Delete }" CommandParameter="{ Binding PictureViewModel.CurrentPicture }" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" />
                     </Grid>
                 </Grid>
@@ -88,7 +88,7 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Command="{ Binding VideoViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer"/>
+                        <Button Grid.Column="0" Command="{ Binding VideoViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Ajouter"/>
                         <Button Grid.Column="1" Command="{ Binding VideoViewModel.Delete }" CommandParameter="{ Binding VideoViewModel.CurrentVideo }" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" />
                     </Grid>
                 </Grid>
@@ -114,7 +114,7 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Command="{ Binding MusicViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer"/>
+                        <Button Grid.Column="0" Command="{ Binding MusicViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Ajouter"/>
                         <Button Grid.Column="1" Command="{ Binding MusicViewModel.Delete }" CommandParameter="{ Binding MusicViewModel.CurrentMusic }" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" />
                     </Grid>
                 </Grid>
@@ -123,14 +123,17 @@
 
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="7*"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="57*"></RowDefinition>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-            <TextBlock FontWeight="Bold" Foreground="DodgerBlue" TextAlignment="Center" HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="81" Grid.Row="0">
+            <TextBlock FontWeight="Bold" Foreground="DodgerBlue" TextAlignment="Center" HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">
                 <Run Language="fr-fr" Text="Current Media"/>
             </TextBlock>
-            <Image x:Name="img" Margin="10" Grid.Row="1" />
+            <Image x:Name="img" Margin="10" Grid.Row="1" Grid.Column="0" />
         </Grid>
     </Grid>
 </Window>
