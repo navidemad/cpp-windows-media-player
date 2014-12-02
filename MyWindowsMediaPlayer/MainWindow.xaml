@@ -45,24 +45,78 @@
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="28"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" />
+                    <ListBox Grid.Row="0" ItemsSource="{ Binding PictureViewModel.Pictures }" SelectedItem="{ Binding PictureViewModel.CurrentPicture }">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{ Binding Name }" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Command="{ Binding PictureViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer"/>
+                        <Button Grid.Column="1" Command="{ Binding PictureViewModel.Delete }" CommandParameter="{ Binding PictureViewModel.CurrentPicture }" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" />
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Videos">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="28"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" />
+                    <ListBox Grid.Row="0" ItemsSource="{ Binding VideoViewModel.Videos }" SelectedItem="{ Binding VideoViewModel.CurrentVideo }">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{ Binding Name }" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Command="{ Binding VideoViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer"/>
+                        <Button Grid.Column="1" Command="{ Binding VideoViewModel.Delete }" CommandParameter="{ Binding VideoViewModel.CurrentVideo }" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" />
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Musique">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="28"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" />
+                    <ListBox Grid.Row="0" ItemsSource="{ Binding MusicViewModel.Musics }" SelectedItem="{ Binding MusicViewModel.CurrentMusic }">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{ Binding Name }" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Command="{ Binding MusicViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer"/>
+                        <Button Grid.Column="1" Command="{ Binding MusicViewModel.Delete }" CommandParameter="{ Binding MusicViewModel.CurrentMusic }" FontWeight="Bold" Foreground="White" Background="DarkRed" Content="Supprimer" />
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -37,6 +37,7 @@
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\AddMusicCommand.cs" />
+    <Compile Include="Command\AddPictureCommand.cs" />
+    <Compile Include="Command\AddVideoCommand.cs" />
+    <Compile Include="Command\DeleteMusicCommand.cs" />
+    <Compile Include="Command\DeletePictureCommand.cs" />
+    <Compile Include="Command\DeleteVideoCommand.cs" />
     <Compile Include="Command\EditPlaylistCommand.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
     <Compile Include="ViewModel\PictureViewModel.cs" />
@@ -111,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\WindowsMediaPlayerLogo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

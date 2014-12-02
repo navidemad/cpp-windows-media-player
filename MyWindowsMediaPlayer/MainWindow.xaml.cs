@@ -26,10 +26,15 @@ namespace MyWindowsMediaPlayer
             InitializeComponent();
 
             // set dataContext
-            DataContext = new MainWindowDataContext { PlayListViewModel = new ViewModel.PlayListViewModel() };
+            DataContext = new MainWindowDataContext {
+                PlayListViewModel = new ViewModel.PlayListViewModel(),
+                MusicViewModel = new ViewModel.MusicViewModel(),
+                VideoViewModel = new ViewModel.VideoViewModel(),
+                PictureViewModel = new ViewModel.PictureViewModel()
+            };
 
             // display main window image
-            //img.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "images/WindowsMediaPlayerLogo.jpg"));
+            img.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.jpg"));
         }
     }
 }
