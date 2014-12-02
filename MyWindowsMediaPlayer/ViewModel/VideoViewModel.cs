@@ -25,24 +25,45 @@ namespace MyWindowsMediaPlayer.ViewModel
         public VideoViewModel()
         {
             Add = new Command.AddVideoCommand(AddVideo);
-            Delete = new Command.DeleteVideoCommand();
+            Delete = new Command.DeleteVideoCommand(RemoveVideo);
 
-            // static data in order to test display and features
-            Videos = new System.Collections.ObjectModel.ObservableCollection<Model.Video> {
-                new Model.Video { Path = "Path1", Name = "Video1" },
-                new Model.Video { Path = "Path2", Name = "Video2" },
-                new Model.Video { Path = "Path3", Name = "Video3" }
-            };
+            LoadData();
+        }
+
+        public void LoadData()
+        {
+            Videos = new System.Collections.ObjectModel.ObservableCollection<Model.Video>();
+            XML.MediaXML mediaXML = new XML.MediaXML();
+
+            mediaXML.Load("videos.xml");
+            List<String> medias = mediaXML.GetMedias();
+            foreach (var media in medias)
+                Videos.Add(new Model.Video { Path = media, Name = System.IO.Path.GetFileName(media) });
         }
 
         public void RemoveVideo(Model.Video video)
         {
+            XML.MediaXML mediaXML = new XML.MediaXML();
+
+            mediaXML.Load("videos.xml");
+            mediaXML.Remove(video.Path);
+            mediaXML.WriteInFile("videos.xml");
+
             Videos.Remove(video);
         }
 
         public void AddVideo(Model.Video video)
         {
-            Videos.Add(video);
+            XML.MediaXML mediaXML = new XML.MediaXML();
+
+            mediaXML.Load("videos.xml");
+            if (!mediaXML.HasMedia(video.Path))
+            {
+                mediaXML.Add(video.Path);
+                mediaXML.WriteInFile("videos.xml");
+
+                Videos.Add(video);
+            }
         }
 
         // COMMANDS

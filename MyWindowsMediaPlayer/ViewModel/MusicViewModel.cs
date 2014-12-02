@@ -25,24 +25,45 @@ namespace MyWindowsMediaPlayer.ViewModel
         public MusicViewModel()
         {
             Add = new Command.AddMusicCommand(AddMusic);
-            Delete = new Command.DeleteMusicCommand();
+            Delete = new Command.DeleteMusicCommand(RemoveMusic);
 
-            // static data in order to test display and features
-            Musics = new System.Collections.ObjectModel.ObservableCollection<Model.Music> {
-                new Model.Music { Path = "Path1", Name = "Music1" },
-                new Model.Music { Path = "Path2", Name = "Music3" },
-                new Model.Music { Path = "Path3", Name = "Music3" }
-            };
+            LoadData();
+        }
+
+        public void LoadData()
+        {
+            Musics = new System.Collections.ObjectModel.ObservableCollection<Model.Music>();
+            XML.MediaXML mediaXML = new XML.MediaXML();
+
+            mediaXML.Load("musics.xml");
+            List<String> medias = mediaXML.GetMedias();
+            foreach (var media in medias)
+                Musics.Add(new Model.Music { Path = media, Name = System.IO.Path.GetFileName(media) });
         }
 
         public void RemoveMusic(Model.Music music)
         {
+            XML.MediaXML mediaXML = new XML.MediaXML();
+
+            mediaXML.Load("musics.xml");
+            mediaXML.Remove(music.Path);
+            mediaXML.WriteInFile("musics.xml");
+
             Musics.Remove(music);
         }
 
         public void AddMusic(Model.Music music)
         {
-            Musics.Add(music);
+            XML.MediaXML mediaXML = new XML.MediaXML();
+
+            mediaXML.Load("musics.xml");
+            if (!mediaXML.HasMedia(music.Path))
+            {
+                mediaXML.Add(music.Path);
+                mediaXML.WriteInFile("musics.xml");
+
+                Musics.Add(music);
+            }
         }
 
         // COMMANDS

@@ -8,6 +8,13 @@ namespace MyWindowsMediaPlayer.Command
 {
     class DeleteVideoCommand : Command
     {
+        Action<Model.Video> Delete;
+
+        public DeleteVideoCommand(Action<Model.Video> delete)
+        {
+            Delete = delete;
+        }
+
         public override bool CanExecute(object param)
         {
             var currentVideo = param as Model.Video;
@@ -18,6 +25,9 @@ namespace MyWindowsMediaPlayer.Command
         {
             if (!CanExecute(param))
                 return;
+
+            var currentVideo = param as Model.Video;
+            Delete(currentVideo);
         }
 
     }

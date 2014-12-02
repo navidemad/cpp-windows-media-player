@@ -82,6 +82,7 @@
     <Compile Include="ViewModel\PictureViewModel.cs" />
     <Compile Include="ViewModel\VideoViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="XML\MediaXML.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

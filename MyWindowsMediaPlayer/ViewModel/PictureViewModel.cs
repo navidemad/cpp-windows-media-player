@@ -25,24 +25,45 @@ namespace MyWindowsMediaPlayer.ViewModel
         public PictureViewModel()
         {
             Add = new Command.AddPictureCommand(AddPicture);
-            Delete = new Command.DeletePictureCommand();
+            Delete = new Command.DeletePictureCommand(RemovePicture);
 
-            // static data in order to test display and features
-            Pictures = new System.Collections.ObjectModel.ObservableCollection<Model.Picture> {
-                new Model.Picture { Path = "Path1", Name = "Picture1" },
-                new Model.Picture { Path = "Path2", Name = "Picture3" },
-                new Model.Picture { Path = "Path3", Name = "Picture3" }
-            };
+            LoadData();
+        }
+
+        public void LoadData()
+        {
+            Pictures = new System.Collections.ObjectModel.ObservableCollection<Model.Picture>();
+            XML.MediaXML mediaXML = new XML.MediaXML();
+
+            mediaXML.Load("pictures.xml");
+            List<String> medias = mediaXML.GetMedias();
+            foreach (var media in medias)
+                Pictures.Add(new Model.Picture { Path = media, Name = System.IO.Path.GetFileName(media) });
         }
 
         public void RemovePicture(Model.Picture picture)
         {
+            XML.MediaXML mediaXML = new XML.MediaXML();
+
+            mediaXML.Load("pictures.xml");
+            mediaXML.Remove(picture.Path);
+            mediaXML.WriteInFile("pictures.xml");
+
             Pictures.Remove(picture);
         }
 
         public void AddPicture(Model.Picture picture)
         {
-            Pictures.Add(picture);
+            XML.MediaXML mediaXML = new XML.MediaXML();
+
+            mediaXML.Load("pictures.xml");
+            if (!mediaXML.HasMedia(picture.Path))
+            {
+                mediaXML.Add(picture.Path);
+                mediaXML.WriteInFile("pictures.xml");
+
+                Pictures.Add(picture);
+            }
         }
 
         // COMMANDS

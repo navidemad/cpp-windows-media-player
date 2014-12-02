@@ -8,6 +8,13 @@ namespace MyWindowsMediaPlayer.Command
 {
     class DeleteMusicCommand : Command
     {
+        Action<Model.Music> Delete;
+
+        public DeleteMusicCommand(Action<Model.Music> delete)
+        {
+            Delete = delete;
+        }
+
         public override bool CanExecute(object param)
         {
             var currentMusic = param as Model.Music;
@@ -18,6 +25,9 @@ namespace MyWindowsMediaPlayer.Command
         {
             if (!CanExecute(param))
                 return;
+
+            var currentMusic = param as Model.Music;
+            Delete(currentMusic);
         }
     }
 }
