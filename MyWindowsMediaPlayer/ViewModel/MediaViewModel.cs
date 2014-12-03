@@ -8,52 +8,48 @@ namespace MyWindowsMediaPlayer.ViewModel
 {
     class MediaViewModel : ViewModel
     {
-        private System.Windows.Visibility _MediaElementVisibility = System.Windows.Visibility.Hidden;
-        public System.Windows.Visibility MediaElementVisibility
+        public Command.SelectMediaCommand SelectMedia { get; set; }
+
+        public Media.Video MediaElement { get; set; }
+        public Media.Image Image { get; set; }
+
+        public System.Windows.Media.ImageSource PrevIcon { get; set; }
+        public System.Windows.Media.ImageSource NextIcon { get; set; }
+
+        private System.Windows.Media.ImageSource _PlayPauseIcon;
+        public System.Windows.Media.ImageSource PlayPauseIcon
         {
-            get { return _MediaElementVisibility; }
+            get { return _PlayPauseIcon; }
             set
             {
-                _MediaElementVisibility = value;
-                RaisePropertyChanged("MediaElementVisibility");
+                _PlayPauseIcon = value;
+                RaisePropertyChanged("PlayPauseIcon");
             }
         }
 
-        private System.Windows.Visibility _ImageVisibility = System.Windows.Visibility.Visible;
-        public System.Windows.Visibility ImageVisibility
+        private String _CurrentMediaName;
+        public String CurrentMediaName
         {
-            get { return _ImageVisibility; }
+            get { return _CurrentMediaName; }
             set
             {
-                _ImageVisibility = value;
-                RaisePropertyChanged("ImageVisibility");
+                _CurrentMediaName = value;
+                RaisePropertyChanged("CurrentMediaName");
             }
         }
 
-        private System.Windows.Media.ImageSource _ImageSource;
-        public System.Windows.Media.ImageSource ImageSource
-        {
-            get { return _ImageSource; }
-            set
-            {
-                _ImageSource = value;
-                RaisePropertyChanged("ImageSource");
-            }
-        }
-
-        private static MediaViewModel instance = null;
-        public static MediaViewModel GetInstance()
-        {
-            if (instance == null)
-                instance = new MediaViewModel();
-
-            return instance;
-        }
-
-        private MediaViewModel()
+        public MediaViewModel()
         {
             SelectMedia = new Command.SelectMediaCommand(PlayMedia);
-            ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.jpg"));
+            CurrentMediaName = "Current Media";
+
+            PrevIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/prev_icon.png"));
+            NextIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/next_icon.png"));
+            PlayPauseIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/play_icon.png"));
+
+            Image = new Media.Image();
+            MediaElement = new Media.Video();
+            Image.Display(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.jpg");
         }
 
         public void PlayMedia(Model.Media media)
@@ -70,28 +66,35 @@ namespace MyWindowsMediaPlayer.ViewModel
                     PlayVideo(media as Model.Video);
                     break;
             }
+
+            CurrentMediaName = media.Name;
         }
 
         public void PlayVideo(Model.Video media)
         {
-            MediaElementVisibility = System.Windows.Visibility.Visible;
-            ImageVisibility = System.Windows.Visibility.Hidden;
+            MediaElement.Source = new Uri(media.Path);
+            MediaElement.Play();
+            MediaElement.Show();
+            Image.Hide();
         }
 
         public void PlayMusic(Model.Music media)
         {
-            MediaElementVisibility = System.Windows.Visibility.Visible;
-            ImageVisibility = System.Windows.Visibility.Hidden;
+            MediaElement.Display(media.Path);
+            MediaElement.Play();
+            MediaElement.Hide();
+
+            Image.Display(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.jpg");
+            Image.Show();
         }
 
         public void PlayPicture(Model.Picture media)
         {
-            MediaElementVisibility = System.Windows.Visibility.Hidden;
-            ImageVisibility = System.Windows.Visibility.Visible;
+            MediaElement.Stop();
+            MediaElement.Hide();
 
-            ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(media.Path));
+            Image.Display(media.Path);
+            Image.Show();
         }
-
-        public Command.SelectMediaCommand SelectMedia { get; set; }
     }
 }

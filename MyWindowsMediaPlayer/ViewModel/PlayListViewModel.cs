@@ -23,16 +23,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
-        private static PlayListViewModel instance = null;
-        public static PlayListViewModel GetInstance()
-        {
-            if (instance == null)
-                instance = new PlayListViewModel();
-
-            return instance;
-        }
-
-        private PlayListViewModel()
+        public PlayListViewModel()
         {
             Add = new Command.AddPlaylistCommand();
             Edit = new Command.EditPlaylistCommand();

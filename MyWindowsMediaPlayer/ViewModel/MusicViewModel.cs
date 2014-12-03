@@ -22,16 +22,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
-        private static MusicViewModel instance = null;
-        public static MusicViewModel GetInstance()
-        {
-            if (instance == null)
-                instance = new MusicViewModel();
-
-            return instance;
-        }
-
-        private MusicViewModel()
+        public MusicViewModel()
         {
             Add = new Command.AddMusicCommand(AddMusic);
             Delete = new Command.DeleteMusicCommand(RemoveMusic);

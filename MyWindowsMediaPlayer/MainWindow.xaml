@@ -146,16 +146,29 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="57*"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBlock FontWeight="Bold" Foreground="DodgerBlue" TextAlignment="Center" HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">
-                <Run Language="fr-fr" Text="Current Media"/>
-            </TextBlock>
-            <MediaElement Visibility="{ Binding MediaViewModel.MediaElementVisibility }" Source="{ Binding MediaViewModel.ImageSource }" Margin="10" Grid.Row="1" Grid.Column="0" />
-            <Image Visibility="{ Binding MediaViewModel.ImageVisibility }" Source="{ Binding MediaViewModel.ImageSource }" Margin="10" Grid.Row="1" Grid.Column="0" />
+            <TextBlock Text="{ Binding MediaViewModel.CurrentMediaName }" FontWeight="Bold" Foreground="DodgerBlue" TextAlignment="Center" HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" />
+            <ContentControl Grid.Row="1" Grid.Column="0" Margin="10" Content="{ Binding MediaViewModel.MediaElement }"/>
+            <ContentControl Grid.Row="1" Grid.Column="0" Margin="10" Content="{ Binding MediaViewModel.Image }"/>
+            
+            <Grid Grid.Row="2" Grid.Column="0" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Grid.Row="0" Source="{ Binding MediaViewModel.PrevIcon }" />
+                <Image Grid.Column="1" Grid.Row="0" Source="{ Binding MediaViewModel.PlayPauseIcon }" />
+                <Image Grid.Column="2" Grid.Row="0" Source="{ Binding MediaViewModel.NextIcon }" />
+            </Grid>
         </Grid>
     </Grid>
 </Window>

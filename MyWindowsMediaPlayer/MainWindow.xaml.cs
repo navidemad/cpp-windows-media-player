@@ -27,11 +27,11 @@ namespace MyWindowsMediaPlayer
 
             // set dataContext
             DataContext = new MainWindowDataContext {
-                PlayListViewModel = ViewModel.PlayListViewModel.GetInstance(),
-                MusicViewModel = ViewModel.MusicViewModel.GetInstance(),
-                VideoViewModel = ViewModel.VideoViewModel.GetInstance(),
-                PictureViewModel = ViewModel.PictureViewModel.GetInstance(),
-                MediaViewModel = ViewModel.MediaViewModel.GetInstance()
+                PlayListViewModel = new ViewModel.PlayListViewModel(),
+                MusicViewModel = new ViewModel.MusicViewModel(),
+                VideoViewModel = new ViewModel.VideoViewModel(),
+                PictureViewModel = new ViewModel.PictureViewModel(),
+                MediaViewModel = new ViewModel.MediaViewModel()
             };
         }
     }

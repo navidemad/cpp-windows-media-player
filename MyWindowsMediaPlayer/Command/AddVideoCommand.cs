@@ -26,7 +26,7 @@ namespace MyWindowsMediaPlayer.Command
                 return;
 
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            openFileDialog.Filter = "MP4 Files (.mp4)|*.mp4|All Files (*.*)|*.*";
+            openFileDialog.Filter = "MP4 Files (.mp4)|*.mp4|WMV Files (.wmv)|*.wmv|All Files (*.*)|*.*";
             openFileDialog.FilterIndex = 1;
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)

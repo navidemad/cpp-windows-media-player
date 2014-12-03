@@ -80,6 +80,8 @@
     <Compile Include="Command\DeleteVideoCommand.cs" />
     <Compile Include="Command\EditPlaylistCommand.cs" />
     <Compile Include="Command\SelectMediaCommand.cs" />
+    <Compile Include="Media\Image.cs" />
+    <Compile Include="Media\Video.cs" />
     <Compile Include="ViewModel\MediaViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
     <Compile Include="ViewModel\PictureViewModel.cs" />
