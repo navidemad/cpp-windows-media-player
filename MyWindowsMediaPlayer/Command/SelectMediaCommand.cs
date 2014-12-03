@@ -17,7 +17,7 @@ namespace MyWindowsMediaPlayer.Command
 
         public override bool CanExecute(object param)
         {
-            return param != null;
+            return (param as Model.Media) != null;
         }
 
         public override void Execute(object param)

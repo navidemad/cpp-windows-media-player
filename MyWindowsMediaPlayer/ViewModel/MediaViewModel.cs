@@ -8,6 +8,28 @@ namespace MyWindowsMediaPlayer.ViewModel
 {
     class MediaViewModel : ViewModel
     {
+        private System.Windows.Visibility _MediaElementVisibility = System.Windows.Visibility.Hidden;
+        public System.Windows.Visibility MediaElementVisibility
+        {
+            get { return _MediaElementVisibility; }
+            set
+            {
+                _MediaElementVisibility = value;
+                RaisePropertyChanged("MediaElementVisibility");
+            }
+        }
+
+        private System.Windows.Visibility _ImageVisibility = System.Windows.Visibility.Visible;
+        public System.Windows.Visibility ImageVisibility
+        {
+            get { return _ImageVisibility; }
+            set
+            {
+                _ImageVisibility = value;
+                RaisePropertyChanged("ImageVisibility");
+            }
+        }
+
         private System.Windows.Media.ImageSource _ImageSource;
         public System.Windows.Media.ImageSource ImageSource
         {
@@ -52,14 +74,21 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         public void PlayVideo(Model.Video media)
         {
+            MediaElementVisibility = System.Windows.Visibility.Visible;
+            ImageVisibility = System.Windows.Visibility.Hidden;
         }
 
         public void PlayMusic(Model.Music media)
         {
+            MediaElementVisibility = System.Windows.Visibility.Visible;
+            ImageVisibility = System.Windows.Visibility.Hidden;
         }
 
         public void PlayPicture(Model.Picture media)
         {
+            MediaElementVisibility = System.Windows.Visibility.Hidden;
+            ImageVisibility = System.Windows.Visibility.Visible;
+
             ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(media.Path));
         }
 

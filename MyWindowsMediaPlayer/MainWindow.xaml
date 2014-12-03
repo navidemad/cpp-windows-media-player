@@ -21,6 +21,11 @@
                         <RowDefinition Height="28"></RowDefinition>
                     </Grid.RowDefinitions>
                     <ListBox Grid.Row="0" ItemsSource="{ Binding PlayListViewModel.Playlists }" SelectedItem="{ Binding PlayListViewModel.CurrentPlaylist }">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMedia }" CommandParameter="{ Binding PlayListViewModel.CurrentPlaylist }" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -80,6 +85,11 @@
                         <RowDefinition Height="28"></RowDefinition>
                     </Grid.RowDefinitions>
                     <ListBox Grid.Row="0" ItemsSource="{ Binding VideoViewModel.Videos }" SelectedItem="{ Binding VideoViewModel.CurrentVideo }">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMedia }" CommandParameter="{ Binding VideoViewModel.CurrentVideo }" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -106,6 +116,11 @@
                         <RowDefinition Height="28"></RowDefinition>
                     </Grid.RowDefinitions>
                     <ListBox Grid.Row="0" ItemsSource="{ Binding MusicViewModel.Musics }" SelectedItem="{ Binding MusicViewModel.CurrentMusic }">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMedia }" CommandParameter="{ Binding MusicViewModel.CurrentMusic }" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -139,7 +154,8 @@
             <TextBlock FontWeight="Bold" Foreground="DodgerBlue" TextAlignment="Center" HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">
                 <Run Language="fr-fr" Text="Current Media"/>
             </TextBlock>
-            <Image Source="{ Binding MediaViewModel.ImageSource }" Margin="10" Grid.Row="1" Grid.Column="0" />
+            <MediaElement Visibility="{ Binding MediaViewModel.MediaElementVisibility }" Source="{ Binding MediaViewModel.ImageSource }" Margin="10" Grid.Row="1" Grid.Column="0" />
+            <Image Visibility="{ Binding MediaViewModel.ImageVisibility }" Source="{ Binding MediaViewModel.ImageSource }" Margin="10" Grid.Row="1" Grid.Column="0" />
         </Grid>
     </Grid>
 </Window>
