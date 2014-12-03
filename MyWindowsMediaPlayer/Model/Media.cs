@@ -16,6 +16,6 @@ namespace MyWindowsMediaPlayer.Model
 
         // TYPE
         public enum MediaType { MUSIC, VIDEO, PICTURE };
-        protected MediaType Type { get; set; }
+        public MediaType Type { get; set; }
     }
 }

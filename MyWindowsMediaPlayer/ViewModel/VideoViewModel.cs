@@ -22,7 +22,16 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
-        public VideoViewModel()
+        private static VideoViewModel instance = null;
+        public static VideoViewModel GetInstance()
+        {
+            if (instance == null)
+                instance = new VideoViewModel();
+
+            return instance;
+        }
+
+        private VideoViewModel()
         {
             Add = new Command.AddVideoCommand(AddVideo);
             Delete = new Command.DeleteVideoCommand(RemoveVideo);

@@ -27,14 +27,12 @@ namespace MyWindowsMediaPlayer
 
             // set dataContext
             DataContext = new MainWindowDataContext {
-                PlayListViewModel = new ViewModel.PlayListViewModel(),
-                MusicViewModel = new ViewModel.MusicViewModel(),
-                VideoViewModel = new ViewModel.VideoViewModel(),
-                PictureViewModel = new ViewModel.PictureViewModel()
+                PlayListViewModel = ViewModel.PlayListViewModel.GetInstance(),
+                MusicViewModel = ViewModel.MusicViewModel.GetInstance(),
+                VideoViewModel = ViewModel.VideoViewModel.GetInstance(),
+                PictureViewModel = ViewModel.PictureViewModel.GetInstance(),
+                MediaViewModel = ViewModel.MediaViewModel.GetInstance()
             };
-
-            // display main window image
-            img.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.jpg"));
         }
     }
 }

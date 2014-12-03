@@ -54,6 +54,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -78,6 +79,8 @@
     <Compile Include="Command\DeletePictureCommand.cs" />
     <Compile Include="Command\DeleteVideoCommand.cs" />
     <Compile Include="Command\EditPlaylistCommand.cs" />
+    <Compile Include="Command\SelectMediaCommand.cs" />
+    <Compile Include="ViewModel\MediaViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
     <Compile Include="ViewModel\PictureViewModel.cs" />
     <Compile Include="ViewModel\VideoViewModel.cs" />
