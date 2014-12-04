@@ -25,8 +25,7 @@ namespace MyWindowsMediaPlayer.Command
             if (!CanExecute(param))
                 return;
 
-            var media = param as Model.Media;
-            Play(media);
+            Play(param as Model.Media);
         }
     }
 }

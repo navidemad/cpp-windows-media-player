@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace MyWindowsMediaPlayer.Command
 {
-    class DeletePictureCommand : Command
+    class PauseMediaCommand : Command
     {
-        Action<Model.Picture> Delete;
+        Action Pause;
 
-        public DeletePictureCommand(Action<Model.Picture> delete)
+        public PauseMediaCommand(Action pause)
         {
-            Delete = delete;
+            Pause = pause;
         }
 
         public override bool CanExecute(object param)
         {
-            return (param as Model.Picture) != null;
+            return (param as bool?) == true;
         }
 
         public override void Execute(object param)
@@ -25,7 +25,7 @@ namespace MyWindowsMediaPlayer.Command
             if (!CanExecute(param))
                 return;
 
-            Delete(param as Model.Picture);
+            Pause();
         }
     }
 }

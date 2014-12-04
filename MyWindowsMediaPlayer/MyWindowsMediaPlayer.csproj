@@ -79,6 +79,9 @@
     <Compile Include="Command\DeletePictureCommand.cs" />
     <Compile Include="Command\DeleteVideoCommand.cs" />
     <Compile Include="Command\EditPlaylistCommand.cs" />
+    <Compile Include="Command\PauseMediaCommand.cs" />
+    <Compile Include="Command\PlayMediaCommand.cs" />
+    <Compile Include="Command\SelectPlaylistCommand.cs" />
     <Compile Include="Command\SelectMediaCommand.cs" />
     <Compile Include="Media\Image.cs" />
     <Compile Include="Media\Video.cs" />

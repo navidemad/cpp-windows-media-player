@@ -23,7 +23,7 @@
                     <ListBox Grid.Row="0" ItemsSource="{ Binding PlayListViewModel.Playlists }" SelectedItem="{ Binding PlayListViewModel.CurrentPlaylist }">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
-                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMedia }" CommandParameter="{ Binding PlayListViewModel.CurrentPlaylist }" />
+                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectPlaylistCommand }" CommandParameter="{ Binding PlayListViewModel.CurrentPlaylist }" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>
@@ -56,7 +56,7 @@
                     <ListBox Grid.Row="0" ItemsSource="{ Binding PictureViewModel.Pictures }" SelectedItem="{ Binding PictureViewModel.CurrentPicture }">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
-                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMedia }" CommandParameter="{ Binding PictureViewModel.CurrentPicture }" />
+                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMediaCommand }" CommandParameter="{ Binding PictureViewModel.CurrentPicture }" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>
@@ -87,7 +87,7 @@
                     <ListBox Grid.Row="0" ItemsSource="{ Binding VideoViewModel.Videos }" SelectedItem="{ Binding VideoViewModel.CurrentVideo }">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
-                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMedia }" CommandParameter="{ Binding VideoViewModel.CurrentVideo }" />
+                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMediaCommand }" CommandParameter="{ Binding VideoViewModel.CurrentVideo }" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>
@@ -118,7 +118,7 @@
                     <ListBox Grid.Row="0" ItemsSource="{ Binding MusicViewModel.Musics }" SelectedItem="{ Binding MusicViewModel.CurrentMusic }">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
-                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMedia }" CommandParameter="{ Binding MusicViewModel.CurrentMusic }" />
+                                <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMediaCommand }" CommandParameter="{ Binding MusicViewModel.CurrentMusic }" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>
@@ -164,10 +164,20 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Grid.Row="0" Source="{ Binding MediaViewModel.PrevIcon }" />
-                <Image Grid.Column="1" Grid.Row="0" Source="{ Binding MediaViewModel.PlayPauseIcon }" />
-                <Image Grid.Column="2" Grid.Row="0" Source="{ Binding MediaViewModel.NextIcon }" />
+                <Button Grid.Column="0" Grid.Row="0">
+                    <Image Source="{ Binding MediaViewModel.PrevIcon }"/>
+                </Button>
+                <Button Grid.Column="1" Grid.Row="0" Command="{ Binding MediaViewModel.PlayMediaCommand }" CommandParameter="{ Binding MediaViewModel.IsPlayingMedia }" >
+                    <Image Source="{ Binding MediaViewModel.PlayIcon }" />
+                </Button>
+                <Button Grid.Column="2" Grid.Row="0" Command="{ Binding MediaViewModel.PauseMediaCommand }" CommandParameter="{ Binding MediaViewModel.IsPlayingMedia }" >
+                    <Image Source="{ Binding MediaViewModel.PauseIcon }" />
+                </Button>
+                <Button Grid.Column="3" Grid.Row="0">
+                    <Image Source="{ Binding MediaViewModel.NextIcon }" />
+                </Button>
             </Grid>
         </Grid>
     </Grid>

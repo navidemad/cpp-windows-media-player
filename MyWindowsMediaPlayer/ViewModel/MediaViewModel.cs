@@ -8,24 +8,30 @@ namespace MyWindowsMediaPlayer.ViewModel
 {
     class MediaViewModel : ViewModel
     {
-        public Command.SelectMediaCommand SelectMedia { get; set; }
+        private bool _IsPlayingMedia = false;
+        public bool IsPlayingMedia {
+            get { return _IsPlayingMedia; }
+            set
+            {
+                _IsPlayingMedia = value;
+                RaisePropertyChanged("IsPlayingMedia");
+                PlayMediaCommand.RaiseCanExecuteChanged();
+                PauseMediaCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public Command.SelectMediaCommand SelectMediaCommand { get; set; }
+        public Command.SelectPlaylistCommand SelectPlaylistCommand { get; set; }
+        public Command.PlayMediaCommand PlayMediaCommand { get; set; }
+        public Command.PauseMediaCommand PauseMediaCommand { get; set; }
 
         public Media.Video MediaElement { get; set; }
         public Media.Image Image { get; set; }
 
         public System.Windows.Media.ImageSource PrevIcon { get; set; }
         public System.Windows.Media.ImageSource NextIcon { get; set; }
-
-        private System.Windows.Media.ImageSource _PlayPauseIcon;
-        public System.Windows.Media.ImageSource PlayPauseIcon
-        {
-            get { return _PlayPauseIcon; }
-            set
-            {
-                _PlayPauseIcon = value;
-                RaisePropertyChanged("PlayPauseIcon");
-            }
-        }
+        public System.Windows.Media.ImageSource PlayIcon { get; set; }
+        public System.Windows.Media.ImageSource PauseIcon { get; set; }
 
         private String _CurrentMediaName;
         public String CurrentMediaName
@@ -40,16 +46,26 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         public MediaViewModel()
         {
-            SelectMedia = new Command.SelectMediaCommand(PlayMedia);
+            SelectMediaCommand = new Command.SelectMediaCommand(PlayMedia);
+            SelectPlaylistCommand = new Command.SelectPlaylistCommand(PlayPlaylist);
+            PlayMediaCommand = new Command.PlayMediaCommand(Play);
+            PauseMediaCommand = new Command.PauseMediaCommand(Pause);
+
             CurrentMediaName = "Current Media";
 
             PrevIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/prev_icon.png"));
             NextIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/next_icon.png"));
-            PlayPauseIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/play_icon.png"));
+            PlayIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/play_icon.png"));
+            PauseIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/pause_icon.png"));
 
             Image = new Media.Image();
             MediaElement = new Media.Video();
             Image.Display(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.jpg");
+        }
+
+        public void PlayPlaylist(Model.Playlist playlist)
+        {
+            // handle playlists;
         }
 
         public void PlayMedia(Model.Media media)
@@ -73,19 +89,23 @@ namespace MyWindowsMediaPlayer.ViewModel
         public void PlayVideo(Model.Video media)
         {
             MediaElement.Source = new Uri(media.Path);
-            MediaElement.Play();
             MediaElement.Show();
             Image.Hide();
+            Play();
+
+            IsPlayingMedia = true;
         }
 
         public void PlayMusic(Model.Music media)
         {
             MediaElement.Display(media.Path);
-            MediaElement.Play();
             MediaElement.Hide();
+            Play();
 
             Image.Display(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.jpg");
             Image.Show();
+
+            IsPlayingMedia = true;
         }
 
         public void PlayPicture(Model.Picture media)
@@ -95,6 +115,18 @@ namespace MyWindowsMediaPlayer.ViewModel
 
             Image.Display(media.Path);
             Image.Show();
+
+            IsPlayingMedia = false;
+        }
+
+        public void Play()
+        {
+            MediaElement.Play();
+        }
+
+        public void Pause()
+        {
+            MediaElement.Pause();
         }
     }
 }

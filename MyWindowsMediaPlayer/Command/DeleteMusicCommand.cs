@@ -17,8 +17,7 @@ namespace MyWindowsMediaPlayer.Command
 
         public override bool CanExecute(object param)
         {
-            var currentMusic = param as Model.Music;
-            return currentMusic != null;
+            return (param as Model.Music) != null;
         }
 
         public override void Execute(object param)
@@ -26,8 +25,7 @@ namespace MyWindowsMediaPlayer.Command
             if (!CanExecute(param))
                 return;
 
-            var currentMusic = param as Model.Music;
-            Delete(currentMusic);
+            Delete(param as Model.Music);
         }
     }
 }

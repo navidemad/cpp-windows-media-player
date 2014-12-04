@@ -10,8 +10,7 @@ namespace MyWindowsMediaPlayer.Command
     {
         public override bool CanExecute(object param)
         {
-            var currentPlaylist = param as Model.Playlist;
-            return currentPlaylist != null;
+            return (param as Model.Playlist) != null;
         }
 
         public override void Execute(object param)

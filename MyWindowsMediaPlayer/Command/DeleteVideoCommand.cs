@@ -17,8 +17,7 @@ namespace MyWindowsMediaPlayer.Command
 
         public override bool CanExecute(object param)
         {
-            var currentVideo = param as Model.Video;
-            return currentVideo != null;
+            return (param as Model.Video) != null;
         }
 
         public override void Execute(object param)
@@ -26,8 +25,7 @@ namespace MyWindowsMediaPlayer.Command
             if (!CanExecute(param))
                 return;
 
-            var currentVideo = param as Model.Video;
-            Delete(currentVideo);
+            Delete(param as Model.Video);
         }
 
     }
