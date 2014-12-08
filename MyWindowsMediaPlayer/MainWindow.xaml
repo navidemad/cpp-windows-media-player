@@ -9,31 +9,28 @@
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition Width="500"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TabControl Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Stretch" Width="221">
+        <TabControl Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Stretch" Width="475">
             <TabItem Header="Playlists" Height="23" VerticalAlignment="Bottom">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="28"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" ItemsSource="{ Binding PlayListViewModel.Playlists }" SelectedItem="{ Binding PlayListViewModel.CurrentPlaylist }">
+                    <DataGrid Grid.Row="0" SelectedItem="{ Binding PlayListViewModel.CurrentPlaylist }" ItemsSource="{ Binding PlayListViewModel.Playlists }" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate }" Header="Date" />
+                        </DataGrid.Columns>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
                                 <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectPlaylistCommand }" CommandParameter="{ Binding PlayListViewModel.CurrentPlaylist }" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{ Binding Name }" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    </DataGrid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -53,20 +50,17 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="28"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" ItemsSource="{ Binding PictureViewModel.Pictures }" SelectedItem="{ Binding PictureViewModel.CurrentPicture }">
+                    <DataGrid Grid.Row="0" SelectedItem="{ Binding PictureViewModel.CurrentPicture }" ItemsSource="{ Binding PictureViewModel.Pictures }" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate }" Header="Date" />
+                        </DataGrid.Columns>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
                                 <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMediaCommand }" CommandParameter="{ Binding PictureViewModel.CurrentPicture }" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{ Binding Name }" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    </DataGrid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -84,20 +78,17 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="28"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" ItemsSource="{ Binding VideoViewModel.Videos }" SelectedItem="{ Binding VideoViewModel.CurrentVideo }">
+                    <DataGrid Grid.Row="0" SelectedItem="{ Binding VideoViewModel.CurrentVideo }" ItemsSource="{ Binding VideoViewModel.Videos }" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate }" Header="Date" />
+                        </DataGrid.Columns>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
                                 <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMediaCommand }" CommandParameter="{ Binding VideoViewModel.CurrentVideo }" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{ Binding Name }" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    </DataGrid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -115,20 +106,20 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="28"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" ItemsSource="{ Binding MusicViewModel.Musics }" SelectedItem="{ Binding MusicViewModel.CurrentMusic }">
+                    <DataGrid Grid.Row="0" SelectedItem="{ Binding MusicViewModel.CurrentMusic }" ItemsSource="{ Binding MusicViewModel.Musics }" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Title }" Header="Titre" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Artists }" Header="Artiste" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Album }" Header="Album" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate }" Header="Date" />
+                        </DataGrid.Columns>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
                                 <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMediaCommand }" CommandParameter="{ Binding MusicViewModel.CurrentMusic }" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{ Binding Name }" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    </DataGrid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
