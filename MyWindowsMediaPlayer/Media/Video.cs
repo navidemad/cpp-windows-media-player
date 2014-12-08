@@ -15,7 +15,13 @@ namespace MyWindowsMediaPlayer.Media
 
         public void Display(String path)
         {
-            Source = new Uri(path);
+            try
+            {
+                Source = new Uri(path);
+            }
+            catch
+            {
+            }
         }
 
         public void Hide()

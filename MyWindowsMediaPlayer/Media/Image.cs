@@ -10,7 +10,13 @@ namespace MyWindowsMediaPlayer.Media
     {
         public void Display(String path)
         {
-            Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(path));
+            try
+            {
+                Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(path));
+            }
+            catch
+            {
+            }
         }
 
         public void Hide()
