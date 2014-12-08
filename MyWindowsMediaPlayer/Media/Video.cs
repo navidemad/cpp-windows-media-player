@@ -30,13 +30,18 @@ namespace MyWindowsMediaPlayer.Media
 
         public void UpgradeSpeed()
         {
-            ++SpeedRatio;
+            if (SpeedRatio > 1)
+                ++SpeedRatio;
+            else
+                SpeedRatio += 0.1;
         }
 
         public void DowngradeSpeed()
         {
-            if (SpeedRatio > 0)
+            if (SpeedRatio > 1)
                 --SpeedRatio;
+            else
+                SpeedRatio -= 0.1;
         }
 
     }
