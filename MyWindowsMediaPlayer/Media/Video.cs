@@ -28,5 +28,16 @@ namespace MyWindowsMediaPlayer.Media
             Visibility = System.Windows.Visibility.Visible;
         }
 
+        public void UpgradeSpeed()
+        {
+            ++SpeedRatio;
+        }
+
+        public void DowngradeSpeed()
+        {
+            if (SpeedRatio > 0)
+                --SpeedRatio;
+        }
+
     }
 }

@@ -92,6 +92,9 @@
     <Compile Include="Command\PlayMediaCommand.cs" />
     <Compile Include="Command\SelectPlaylistCommand.cs" />
     <Compile Include="Command\SelectMediaCommand.cs" />
+    <Compile Include="Command\SpeedDownMediaCommand.cs" />
+    <Compile Include="Command\SpeedUpMediaCommand.cs" />
+    <Compile Include="Command\StopMediaCommand.cs" />
     <Compile Include="Media\Image.cs" />
     <Compile Include="Media\Video.cs" />
     <Compile Include="ViewModel\MediaViewModel.cs" />

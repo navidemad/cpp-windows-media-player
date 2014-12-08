@@ -17,6 +17,7 @@ namespace MyWindowsMediaPlayer.ViewModel
                 RaisePropertyChanged("IsPlayingMedia");
                 PlayMediaCommand.RaiseCanExecuteChanged();
                 PauseMediaCommand.RaiseCanExecuteChanged();
+                StopMediaCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -24,6 +25,9 @@ namespace MyWindowsMediaPlayer.ViewModel
         public Command.SelectPlaylistCommand SelectPlaylistCommand { get; set; }
         public Command.PlayMediaCommand PlayMediaCommand { get; set; }
         public Command.PauseMediaCommand PauseMediaCommand { get; set; }
+        public Command.StopMediaCommand StopMediaCommand { get; set; }
+        public Command.SpeedUpMediaCommand SpeedUpMediaCommand { get; set; }
+        public Command.SpeedDownMediaCommand SpeedDownMediaCommand { get; set; }
 
         public Media.Video MediaElement { get; set; }
         public Media.Image Image { get; set; }
@@ -31,7 +35,10 @@ namespace MyWindowsMediaPlayer.ViewModel
         public System.Windows.Media.ImageSource PrevIcon { get; set; }
         public System.Windows.Media.ImageSource NextIcon { get; set; }
         public System.Windows.Media.ImageSource PlayIcon { get; set; }
+        public System.Windows.Media.ImageSource StopIcon { get; set; }
         public System.Windows.Media.ImageSource PauseIcon { get; set; }
+        public System.Windows.Media.ImageSource SpeedDownIcon { get; set; }
+        public System.Windows.Media.ImageSource SpeedUpIcon { get; set; }
 
         private String _CurrentMediaName;
         public String CurrentMediaName
@@ -50,6 +57,9 @@ namespace MyWindowsMediaPlayer.ViewModel
             SelectPlaylistCommand = new Command.SelectPlaylistCommand(PlayPlaylist);
             PlayMediaCommand = new Command.PlayMediaCommand(Play);
             PauseMediaCommand = new Command.PauseMediaCommand(Pause);
+            StopMediaCommand = new Command.StopMediaCommand(Stop);
+            SpeedUpMediaCommand = new Command.SpeedUpMediaCommand(UpgradeSpeed);
+            SpeedDownMediaCommand = new Command.SpeedDownMediaCommand(DowngradeSpeed);
 
             CurrentMediaName = "Current Media";
 
@@ -57,6 +67,9 @@ namespace MyWindowsMediaPlayer.ViewModel
             NextIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/next_icon.png"));
             PlayIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/play_icon.png"));
             PauseIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/pause_icon.png"));
+            StopIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/stop_icon.png"));
+            SpeedUpIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/speed_up_icon.png"));
+            SpeedDownIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/speed_down_icon.png"));
 
             Image = new Media.Image();
             MediaElement = new Media.Video();
@@ -130,6 +143,21 @@ namespace MyWindowsMediaPlayer.ViewModel
         public void Pause()
         {
             MediaElement.Pause();
+        }
+
+        public void Stop()
+        {
+            MediaElement.Stop();
+        }
+
+        public void UpgradeSpeed()
+        {
+            MediaElement.UpgradeSpeed();
+        }
+
+        public void DowngradeSpeed()
+        {
+            MediaElement.DowngradeSpeed();
         }
     }
 }
