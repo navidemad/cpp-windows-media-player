@@ -38,7 +38,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             mediaXML.Load("musics.xml");
             List<String> medias = mediaXML.GetMedias();
             foreach (var media in medias)
-                Musics.Add(new Model.Music { Path = media, Name = System.IO.Path.GetFileName(media) });
+                Musics.Add(new Model.Music(media));
         }
 
         public void RemoveMusic(Model.Music music)

@@ -30,6 +30,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             Delete = new Command.DeletePlaylistCommand();
 
             // static data in order to test display and features
+            /*
             Playlists = new System.Collections.ObjectModel.ObservableCollection<Model.Playlist> {
                 new Model.Playlist {
                     Name = "Playlist 1",
@@ -48,7 +49,8 @@ namespace MyWindowsMediaPlayer.ViewModel
                         new Model.Video { Path = "Path3", Name = "Video" }
                     }
                 }
-};
+            };
+            */
         }
 
         public void RemovePlaylist(Model.Playlist playlist)

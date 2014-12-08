@@ -49,6 +49,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Id3">
+      <HintPath>dependencies\Id3.dll</HintPath>
+    </Reference>
+    <Reference Include="Id3.Files">
+      <HintPath>dependencies\Id3.Files.dll</HintPath>
+    </Reference>
+    <Reference Include="Id3.WinForms">
+      <HintPath>dependencies\Id3.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />

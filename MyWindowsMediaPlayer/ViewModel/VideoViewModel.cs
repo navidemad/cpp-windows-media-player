@@ -38,7 +38,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             mediaXML.Load("videos.xml");
             List<String> medias = mediaXML.GetMedias();
             foreach (var media in medias)
-                Videos.Add(new Model.Video { Path = media, Name = System.IO.Path.GetFileName(media) });
+                Videos.Add(new Model.Video(media));
         }
 
         public void RemoveVideo(Model.Video video)

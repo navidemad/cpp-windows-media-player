@@ -30,7 +30,7 @@ namespace MyWindowsMediaPlayer.Command
             openFileDialog.FilterIndex = 1;
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                Add(new Model.Music { Path = openFileDialog.FileName, Name = System.IO.Path.GetFileName(openFileDialog.FileName) });
+                Add(new Model.Music(openFileDialog.FileName));
         }
     }
 }

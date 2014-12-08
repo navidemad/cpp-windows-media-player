@@ -38,7 +38,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             mediaXML.Load("pictures.xml");
             List<String> medias = mediaXML.GetMedias();
             foreach (var media in medias)
-                Pictures.Add(new Model.Picture { Path = media, Name = System.IO.Path.GetFileName(media) });
+                Pictures.Add(new Model.Picture(media));
         }
 
         public void RemovePicture(Model.Picture picture)
