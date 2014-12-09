@@ -51,7 +51,16 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
-        public MediaViewModel()
+        static private MediaViewModel _Instance = null;
+        static public MediaViewModel getInstance()
+        {
+            if (_Instance == null)
+                _Instance = new MediaViewModel();
+
+            return _Instance;
+        }
+
+        private MediaViewModel()
         {
             SelectMediaCommand = new Command.SelectMediaCommand(PlayMedia);
             SelectPlaylistCommand = new Command.SelectPlaylistCommand(PlayPlaylist);
