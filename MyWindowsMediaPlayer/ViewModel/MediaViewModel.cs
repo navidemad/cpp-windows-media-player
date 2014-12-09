@@ -127,7 +127,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         public void PlayVideo(Model.Video media)
         {
-            MediaElement.Source = new Uri(media.Path);
+            MediaElement.Display(media.Path);
             MediaElement.Show();
             Image.Hide();
             Play();

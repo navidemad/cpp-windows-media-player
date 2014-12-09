@@ -23,7 +23,7 @@
                     <DataGrid Grid.Row="0" SelectedItem="{ Binding PlayListViewModel.CurrentPlaylist }" ItemsSource="{ Binding PlayListViewModel.Playlists }" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" />
-                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate }" Header="Date" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" />
                         </DataGrid.Columns>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
@@ -53,7 +53,7 @@
                     <DataGrid Grid.Row="0" SelectedItem="{ Binding PictureViewModel.CurrentPicture }" ItemsSource="{ Binding PictureViewModel.Pictures }" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" />
-                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate }" Header="Date" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" />
                         </DataGrid.Columns>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
@@ -81,7 +81,7 @@
                     <DataGrid Grid.Row="0" SelectedItem="{ Binding VideoViewModel.CurrentVideo }" ItemsSource="{ Binding VideoViewModel.Videos }" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" />
-                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate }" Header="Date" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" />
                         </DataGrid.Columns>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
@@ -112,7 +112,7 @@
                             <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Title }" Header="Titre" />
                             <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Artists }" Header="Artiste" />
                             <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Album }" Header="Album" />
-                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate }" Header="Date" />
+                            <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" />
                         </DataGrid.Columns>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
@@ -138,6 +138,7 @@
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="25"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -183,7 +184,19 @@
                     <Image Source="{ Binding MediaViewModel.SpeedUpIcon }" />
                 </Button>
             </Grid>
-            <Slider Grid.Row="3" Minimum="0" Maximum="1" Value="{ Binding MediaViewModel.MediaElement.Volume }" />
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="5"></ColumnDefinition>
+                    <ColumnDefinition Width="25"></ColumnDefinition>
+                    <ColumnDefinition Width="5"></ColumnDefinition>
+                    <ColumnDefinition Width="25"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Slider Grid.Column="0" Minimum="0" Maximum="{ Binding MediaViewModel.MediaElement.MaxDuration }" Value="{ Binding MediaViewModel.MediaElement.CurrentTime }" />
+                <TextBlock Grid.Column="2" Text="{ Binding MediaViewModel.MediaElement.CurrentTime }" />
+                <TextBlock Grid.Column="4" Text="{ Binding MediaViewModel.MediaElement.MaxDuration }" />
+            </Grid>
+            <Slider Grid.Row="4" Minimum="0" Maximum="1" Value="{ Binding MediaViewModel.MediaElement.Volume }" />
         </Grid>
     </Grid>
 </Window>

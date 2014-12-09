@@ -34,5 +34,6 @@ namespace MyWindowsMediaPlayer
                 MediaViewModel = ViewModel.MediaViewModel.getInstance()
             };
         }
+
     }
 }
