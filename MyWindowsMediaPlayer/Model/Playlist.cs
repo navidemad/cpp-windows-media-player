@@ -13,5 +13,14 @@ namespace MyWindowsMediaPlayer.Model
 
         // PLAYLIST NAME
         public String Name { get; set; }
+
+        // MEDIA INDEX
+        public int CurrentIndex { get; set; }
+
+        public Playlist()
+        {
+            Name = "";
+            CurrentIndex = 0;
+        }
     }
 }

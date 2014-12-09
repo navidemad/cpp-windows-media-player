@@ -8,6 +8,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 {
     class MusicViewModel : ViewModel
     {
+        private int _CurrentIndex = 0;
         public System.Collections.ObjectModel.ObservableCollection<Model.Music> Musics { get; set; }
 
         private Model.Music _CurrentMusic = null;
@@ -73,6 +74,30 @@ namespace MyWindowsMediaPlayer.ViewModel
 
                 Musics.Add(music);
             }
+        }
+
+        public Model.Music Next()
+        {
+            if (Musics.Count() == 0)
+                return null;
+
+            ++_CurrentIndex;
+            _CurrentIndex %= Musics.Count();
+
+            return Musics[_CurrentIndex];
+        }
+
+        public Model.Music Prev()
+        {
+            if (Musics.Count() == 0)
+                return null;
+
+            if (_CurrentIndex > 0)
+                --_CurrentIndex;
+            else
+                _CurrentIndex = Musics.Count() - 1;
+
+            return Musics[_CurrentIndex];
         }
 
         // COMMANDS

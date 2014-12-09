@@ -8,6 +8,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 {
     class PictureViewModel : ViewModel
     {
+        private int _CurrentIndex = 0;
         public System.Collections.ObjectModel.ObservableCollection<Model.Picture> Pictures { get; set; }
 
         private Model.Picture _CurrentPicture = null;
@@ -73,6 +74,30 @@ namespace MyWindowsMediaPlayer.ViewModel
 
                 Pictures.Add(picture);
             }
+        }
+
+        public Model.Picture Next()
+        {
+            if (Pictures.Count() == 0)
+                return null;
+
+            ++_CurrentIndex;
+            _CurrentIndex %= Pictures.Count();
+
+            return Pictures[_CurrentIndex];
+        }
+
+        public Model.Picture Prev()
+        {
+            if (Pictures.Count() == 0)
+                return null;
+
+            if (_CurrentIndex > 0)
+                --_CurrentIndex;
+            else
+                _CurrentIndex = Pictures.Count() - 1;
+
+            return Pictures[_CurrentIndex];
         }
 
         // COMMANDS

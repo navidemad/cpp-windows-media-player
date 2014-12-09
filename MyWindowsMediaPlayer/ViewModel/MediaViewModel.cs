@@ -9,7 +9,8 @@ namespace MyWindowsMediaPlayer.ViewModel
     class MediaViewModel : ViewModel
     {
         private bool _IsPlayingMedia = false;
-        public bool IsPlayingMedia {
+        public bool IsPlayingMedia
+        {
             get { return _IsPlayingMedia; }
             set
             {
@@ -21,6 +22,9 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
+        private bool _IsPlayingPlaylist = false;
+        private Model.Media.MediaType _CurrentMediaType = Model.Media.MediaType.PICTURE;
+
         public Command.SelectMediaCommand SelectMediaCommand { get; set; }
         public Command.SelectPlaylistCommand SelectPlaylistCommand { get; set; }
         public Command.PlayMediaCommand PlayMediaCommand { get; set; }
@@ -28,6 +32,8 @@ namespace MyWindowsMediaPlayer.ViewModel
         public Command.StopMediaCommand StopMediaCommand { get; set; }
         public Command.SpeedUpMediaCommand SpeedUpMediaCommand { get; set; }
         public Command.SpeedDownMediaCommand SpeedDownMediaCommand { get; set; }
+        public Command.NextMediaCommand NextMediaCommand { get; set; }
+        public Command.PrevMediaCommand PrevMediaCommand { get; set;}
 
         public Media.Video MediaElement { get; set; }
         public Media.Image Image { get; set; }
@@ -69,6 +75,8 @@ namespace MyWindowsMediaPlayer.ViewModel
             StopMediaCommand = new Command.StopMediaCommand(Stop);
             SpeedUpMediaCommand = new Command.SpeedUpMediaCommand(UpgradeSpeed);
             SpeedDownMediaCommand = new Command.SpeedDownMediaCommand(DowngradeSpeed);
+            NextMediaCommand = new Command.NextMediaCommand(NextMedia);
+            PrevMediaCommand = new Command.PrevMediaCommand(PrevMedia);
 
             CurrentMediaName = "Current Media";
 
@@ -87,12 +95,16 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         public void PlayPlaylist(Model.Playlist playlist)
         {
+            if (playlist == null)
+                return;
+
             // handle playlists;
+            _IsPlayingPlaylist = true;
         }
 
         public void PlayMedia(Model.Media media)
         {
-            if (System.IO.File.Exists(media.Path) == false)
+            if (media == null || System.IO.File.Exists(media.Path) == false)
                 return;
 
             switch (media.Type)
@@ -108,7 +120,9 @@ namespace MyWindowsMediaPlayer.ViewModel
                     break;
             }
 
+            _IsPlayingPlaylist = false;
             CurrentMediaName = media.Name;
+            _CurrentMediaType = media.Type;
         }
 
         public void PlayVideo(Model.Video media)
@@ -167,6 +181,51 @@ namespace MyWindowsMediaPlayer.ViewModel
         public void DowngradeSpeed()
         {
             MediaElement.DowngradeSpeed();
+        }
+
+        public void NextMedia()
+        {
+            SwitchMedia("Next");
+        }
+
+        public void PrevMedia()
+        {
+            SwitchMedia("Prev");
+        }
+
+        private void SwitchMedia(String methodName)
+        {
+            if (_IsPlayingPlaylist)
+            {
+                System.Reflection.MethodInfo method = Type.GetType("ViewModel.PlayListViewModel").GetMethod(methodName);
+                PlayPlaylist(method.Invoke(PlayListViewModel.getInstance(), new object[] {}) as Model.Playlist);
+            }
+            else
+            {
+                Type type;
+                object obj;
+
+                switch (_CurrentMediaType)
+                {
+                    case Model.Media.MediaType.PICTURE:
+                        type = typeof(PictureViewModel);
+                        obj = PictureViewModel.getInstance();
+                        break;
+                    case Model.Media.MediaType.VIDEO:
+                        type = typeof(VideoViewModel);
+                        obj = VideoViewModel.getInstance();
+                        break;
+                    case Model.Media.MediaType.MUSIC:
+                        type = typeof(MusicViewModel);
+                        obj = MusicViewModel.getInstance();
+                        break;
+                    default:
+                        return;
+                }
+
+                System.Reflection.MethodInfo method = type.GetMethod(methodName);
+                PlayMedia(method.Invoke(obj, new object[] {}) as Model.Media);
+            }
         }
     }
 }

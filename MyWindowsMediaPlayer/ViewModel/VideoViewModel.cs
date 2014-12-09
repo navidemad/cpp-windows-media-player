@@ -8,6 +8,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 {
     class VideoViewModel : ViewModel
     {
+        private int _CurrentIndex = 0;
         public System.Collections.ObjectModel.ObservableCollection<Model.Video> Videos { get; set; }
 
         private Model.Video _CurrentVideo = null;
@@ -73,6 +74,30 @@ namespace MyWindowsMediaPlayer.ViewModel
 
                 Videos.Add(video);
             }
+        }
+
+        public Model.Video Next()
+        {
+            if (Videos.Count() == 0)
+                return null;
+
+            ++_CurrentIndex;
+            _CurrentIndex %= Videos.Count();
+
+            return Videos[_CurrentIndex];
+        }
+
+        public Model.Video Prev()
+        {
+            if (Videos.Count() == 0)
+                return null;
+
+            if (_CurrentIndex > 0)
+                --_CurrentIndex;
+            else
+                _CurrentIndex = Videos.Count() - 1;
+
+            return Videos[_CurrentIndex];
         }
 
         // COMMANDS
