@@ -31,7 +31,8 @@ namespace MyWindowsMediaPlayer.View
                 MusicViewModel = ViewModel.MusicViewModel.getInstance(),
                 VideoViewModel = ViewModel.VideoViewModel.getInstance(),
                 PictureViewModel = ViewModel.PictureViewModel.getInstance(),
-                MediaViewModel = ViewModel.MediaViewModel.getInstance()
+                MediaViewModel = ViewModel.MediaViewModel.getInstance(),
+                SettingsViewModel = ViewModel.SettingsViewModel.getInstance()
             };
         }
     }

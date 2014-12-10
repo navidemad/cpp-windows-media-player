@@ -13,5 +13,6 @@ namespace MyWindowsMediaPlayer.View
         public ViewModel.PictureViewModel PictureViewModel { get; set; }
         public ViewModel.VideoViewModel VideoViewModel { get; set; }
         public ViewModel.MediaViewModel MediaViewModel { get; set; }
+        public ViewModel.SettingsViewModel SettingsViewModel { get; set; }
     }
 }

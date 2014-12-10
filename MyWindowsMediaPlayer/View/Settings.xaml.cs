@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MyWindowsMediaPlayer.View
 {
     /// <summary>
-    /// Logique d'interaction pour Menu.xaml
+    /// Logique d'interaction pour Settings.xaml
     /// </summary>
-    public partial class Menu : Page
+    public partial class Settings : Page
     {
-        public Menu()
+        public Settings()
         {
             InitializeComponent();
 
