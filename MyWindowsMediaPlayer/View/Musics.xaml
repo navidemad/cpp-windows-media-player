@@ -14,6 +14,8 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="5"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
         </Grid.RowDefinitions>
         
         <DataGrid Grid.Row="0" SelectedItem="{ Binding MusicViewModel.CurrentMusic }" ItemsSource="{ Binding MusicViewModel.Musics }" AutoGenerateColumns="False">
@@ -30,15 +32,19 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </DataGrid>
-        
-        <Grid Grid.Row="2">
+
+        <TextBox Grid.Row="2" Text="{ Binding MusicViewModel.LinkInput, UpdateSourceTrigger=PropertyChanged }" />
+
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Command="{ Binding MusicViewModel.Add }" FontWeight="Bold" Content="Ajouter" Foreground="White" Background="DodgerBlue" />
-            <Button Grid.Column="1" Command="{ Binding MusicViewModel.Delete }" CommandParameter="{ Binding MusicViewModel.CurrentMusic }" FontWeight="Bold" Content="Supprimer" />
+            <Button Grid.Column="0" Command="{ Binding MusicViewModel.AddLink }" CommandParameter="{ Binding MusicViewModel.LinkInput }" FontWeight="Bold" Content="Ajouter le lien" />
+            <Button Grid.Column="1" Command="{ Binding MusicViewModel.AddFile }" FontWeight="Bold" Content="Ajouter un fichier" Foreground="White" Background="DodgerBlue" />
+            <Button Grid.Column="2" Command="{ Binding MusicViewModel.Delete }" CommandParameter="{ Binding MusicViewModel.CurrentMusic }" FontWeight="Bold" Content="Supprimer" />
         </Grid>
     </Grid>
 </UserControl>

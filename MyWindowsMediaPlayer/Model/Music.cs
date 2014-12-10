@@ -8,9 +8,11 @@ namespace MyWindowsMediaPlayer.Model
 {
     class Music : Media
     {
-        public Music(String path) : base(path) {
+        public Music(String path, bool stream = false) : base(path, stream) {
             Type = Media.MediaType.MUSIC;
-            extractMp3Info();
+
+            if (stream == false)
+                extractMp3Info();
         }
 
         public void extractMp3Info()

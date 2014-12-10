@@ -23,6 +23,18 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
+        private String _LinkInput = "";
+        public String LinkInput
+        {
+            get { return _LinkInput; }
+            set
+            {
+                _LinkInput = value;
+                RaisePropertyChanged("LinkInput");
+                AddLink.RaiseCanExecuteChanged();
+            }
+        }
+
         static private MusicViewModel _Instance = null;
         static public MusicViewModel getInstance()
         {
@@ -34,7 +46,8 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         private MusicViewModel()
         {
-            Add = new Command.AddMusicCommand(AddMusic);
+            AddLink = new Command.AddMusicLinkCommand(AddMusic);
+            AddFile = new Command.AddMusicFileCommand(AddMusic);
             Delete = new Command.DeleteMusicCommand(RemoveMusic);
 
             LoadData();
@@ -46,9 +59,9 @@ namespace MyWindowsMediaPlayer.ViewModel
             XML.MediaXML mediaXML = new XML.MediaXML();
 
             mediaXML.Load("musics.xml");
-            List<String> medias = mediaXML.GetMedias();
+            List<Tuple<String, Boolean>> medias = mediaXML.GetMedias();
             foreach (var media in medias)
-                Musics.Add(new Model.Music(media));
+                Musics.Add(new Model.Music(media.Item1, media.Item2));
         }
 
         public void RemoveMusic(Model.Music music)
@@ -69,7 +82,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             mediaXML.Load("musics.xml");
             if (!mediaXML.HasMedia(music.Path))
             {
-                mediaXML.Add(music.Path);
+                mediaXML.Add(music.Path, music.Stream);
                 mediaXML.WriteInFile("musics.xml");
 
                 Musics.Add(music);
@@ -102,6 +115,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         // COMMANDS
         public Command.DeleteMusicCommand Delete { get; set; }
-        public Command.AddMusicCommand Add { get; set; }
+        public Command.AddMusicFileCommand AddFile { get; set; }
+        public Command.AddMusicLinkCommand AddLink { get; set; }
     }
 }

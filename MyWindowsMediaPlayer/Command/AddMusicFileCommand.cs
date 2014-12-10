@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyWindowsMediaPlayer.Command
 {
-    class AddMusicCommand : Command
+    class AddMusicFileCommand : Command
     {
         Action<Model.Music> Add;
 
-        public AddMusicCommand(Action<Model.Music> add)
+        public AddMusicFileCommand(Action<Model.Music> add)
         {
             Add = add;
         }

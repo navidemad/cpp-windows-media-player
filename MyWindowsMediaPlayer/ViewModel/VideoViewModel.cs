@@ -23,6 +23,18 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
+        private String _LinkInput = "";
+        public String LinkInput
+        {
+            get { return _LinkInput; }
+            set
+            {
+                _LinkInput = value;
+                RaisePropertyChanged("LinkInput");
+                AddLink.RaiseCanExecuteChanged();
+            }
+        }
+
         static private VideoViewModel _Instance = null;
         static public VideoViewModel getInstance()
         {
@@ -34,7 +46,8 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         private VideoViewModel()
         {
-            Add = new Command.AddVideoCommand(AddVideo);
+            AddLink = new Command.AddVideoLinkCommand(AddVideo);
+            AddFile = new Command.AddVideoFileCommand(AddVideo);
             Delete = new Command.DeleteVideoCommand(RemoveVideo);
 
             LoadData();
@@ -46,9 +59,9 @@ namespace MyWindowsMediaPlayer.ViewModel
             XML.MediaXML mediaXML = new XML.MediaXML();
 
             mediaXML.Load("videos.xml");
-            List<String> medias = mediaXML.GetMedias();
+            List<Tuple<String, Boolean>> medias = mediaXML.GetMedias();
             foreach (var media in medias)
-                Videos.Add(new Model.Video(media));
+                Videos.Add(new Model.Video(media.Item1, media.Item2));
         }
 
         public void RemoveVideo(Model.Video video)
@@ -69,7 +82,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             mediaXML.Load("videos.xml");
             if (!mediaXML.HasMedia(video.Path))
             {
-                mediaXML.Add(video.Path);
+                mediaXML.Add(video.Path, video.Stream);
                 mediaXML.WriteInFile("videos.xml");
 
                 Videos.Add(video);
@@ -102,6 +115,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         // COMMANDS
         public Command.DeleteVideoCommand Delete { get; set; }
-        public Command.AddVideoCommand Add { get; set; }
+        public Command.AddVideoFileCommand AddFile { get; set; }
+        public Command.AddVideoLinkCommand AddLink { get; set; }
     }
 }

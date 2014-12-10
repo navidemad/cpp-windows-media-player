@@ -8,7 +8,7 @@ namespace MyWindowsMediaPlayer.Model
 {
     class Video : Media
     {
-        public Video(String path) : base(path)
+        public Video(String path, bool stream = false) : base(path, stream)
         {
             Type = Media.MediaType.VIDEO;
         }

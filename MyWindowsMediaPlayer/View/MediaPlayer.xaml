@@ -40,7 +40,7 @@
                         <ColumnDefinition Width="75"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock HorizontalAlignment="Center" Grid.Column="0" Text="{ Binding MediaViewModel.MediaElement.CurrentTime, StringFormat=hh\\:mm\\:ss }" />
-                    <Slider Grid.Column="1" Minimum="0" Maximum="{ Binding MediaViewModel.MediaElement.MaxDuration.TotalSeconds }" Value="{ Binding MediaViewModel.MediaElement.CurrentTime.TotalSeconds, Mode=OneWay }" />
+                    <Slider Grid.Column="1" Minimum="0" Maximum="{ Binding MediaViewModel.MediaElement.MaxDuration.TotalSeconds }" Value="{ Binding MediaViewModel.MediaElement.CurrentTime.TotalSeconds, Mode=OneWay}" />
                     <TextBlock HorizontalAlignment="Center" Grid.Column="2" Text="{ Binding MediaViewModel.MediaElement.MaxDuration, StringFormat=hh\\:mm\\:ss }" />
                 </Grid>
 

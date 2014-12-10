@@ -24,46 +24,69 @@ namespace MyWindowsMediaPlayer.XML
 
         public bool HasMedia(String path)
         {
-            var medias = from media in xelement.Elements() where (string)media.Element("Path").Value == path select media;
+            try
+            {
+                var medias = from media in xelement.Elements() where (string)media.Element("Path").Value == path select media;
 
-            foreach (var media in medias)
-                return true;
-            return false;
+                foreach (var media in medias)
+                    return true;
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public List<String> GetMedias()
+        public List<Tuple<String, Boolean>> GetMedias()
         {
             IEnumerable<System.Xml.Linq.XElement> medias = xelement.Elements();
-            List<String> mediasList = new List<string>();
+            List<Tuple<String, Boolean>> mediasList = new List<Tuple<String, Boolean>>();
 
-            foreach (var media in medias)
-                mediasList.Add(media.Element("Path").Value);
-
+            try
+            {
+                foreach (var media in medias)
+                    mediasList.Add(new Tuple<String, Boolean>(media.Element("Path").Value, Boolean.Parse(media.Element("Stream").Value)));
+            }
+            catch { }
+            
             return mediasList;
         }
 
-        public void Add(String filename)
+        public void Add(String filename, Boolean stream)
         {
-            xelement.Add(new System.Xml.Linq.XElement("Media", new System.Xml.Linq.XElement("Path", filename)));
+            try
+            {
+                xelement.Add(new System.Xml.Linq.XElement("Media", new System.Xml.Linq.XElement("Path", filename), new System.Xml.Linq.XElement("Stream", stream)));
+            }
+            catch { }
         }
 
         public void Remove(String filename)
         {
-            var medias = from media in xelement.Elements() where (string)media.Element("Path").Value == filename select media;
+            try
+            {
+                var medias = from media in xelement.Elements() where (string)media.Element("Path").Value == filename select media;
 
-            foreach (var media in medias)
-                media.Remove();
+                foreach (var media in medias)
+                    media.Remove();
+            }
+            catch { }
         }
 
         public void WriteInFile(String filename)
         {
-            System.Xml.Linq.XDocument xDoc = new System.Xml.Linq.XDocument(new System.Xml.Linq.XDeclaration("1.0", "UTF-16", null), xelement);
+            try
+            {
+                System.Xml.Linq.XDocument xDoc = new System.Xml.Linq.XDocument(new System.Xml.Linq.XDeclaration("1.0", "UTF-16", null), xelement);
 
-            System.IO.StringWriter sw = new System.IO.StringWriter();
-            System.Xml.XmlWriter xWrite = System.Xml.XmlWriter.Create(sw);
-            xDoc.Save(xWrite);
-            xWrite.Close();
-            xDoc.Save(filename);
+                System.IO.StringWriter sw = new System.IO.StringWriter();
+                System.Xml.XmlWriter xWrite = System.Xml.XmlWriter.Create(sw);
+                xDoc.Save(xWrite);
+                xWrite.Close();
+                xDoc.Save(filename);
+            }
+            catch { }
         }
 
     }

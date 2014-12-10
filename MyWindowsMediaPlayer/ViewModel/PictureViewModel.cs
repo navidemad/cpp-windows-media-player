@@ -23,6 +23,18 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
+        private String _LinkInput = "";
+        public String LinkInput
+        {
+            get { return _LinkInput; }
+            set
+            {
+                _LinkInput = value;
+                RaisePropertyChanged("LinkInput");
+                AddLink.RaiseCanExecuteChanged();
+            }
+        }
+
         static private PictureViewModel _Instance = null;
         static public PictureViewModel getInstance()
         {
@@ -34,7 +46,8 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         private PictureViewModel()
         {
-            Add = new Command.AddPictureCommand(AddPicture);
+            AddLink = new Command.AddPictureLinkCommand(AddPicture);
+            AddFile = new Command.AddPictureFileCommand(AddPicture);
             Delete = new Command.DeletePictureCommand(RemovePicture);
 
             LoadData();
@@ -46,9 +59,9 @@ namespace MyWindowsMediaPlayer.ViewModel
             XML.MediaXML mediaXML = new XML.MediaXML();
 
             mediaXML.Load("pictures.xml");
-            List<String> medias = mediaXML.GetMedias();
+            List<Tuple<String, Boolean>> medias = mediaXML.GetMedias();
             foreach (var media in medias)
-                Pictures.Add(new Model.Picture(media));
+                Pictures.Add(new Model.Picture(media.Item1, media.Item2));
         }
 
         public void RemovePicture(Model.Picture picture)
@@ -69,7 +82,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             mediaXML.Load("pictures.xml");
             if (!mediaXML.HasMedia(picture.Path))
             {
-                mediaXML.Add(picture.Path);
+                mediaXML.Add(picture.Path, picture.Stream);
                 mediaXML.WriteInFile("pictures.xml");
 
                 Pictures.Add(picture);
@@ -102,6 +115,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         // COMMANDS
         public Command.DeletePictureCommand Delete { get; set; }
-        public Command.AddPictureCommand Add { get; set; }
+        public Command.AddPictureFileCommand AddFile { get; set; }
+        public Command.AddPictureLinkCommand AddLink { get; set; }
     }
 }

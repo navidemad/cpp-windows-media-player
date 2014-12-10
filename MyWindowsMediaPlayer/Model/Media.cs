@@ -19,8 +19,17 @@ namespace MyWindowsMediaPlayer.Model
             set
             {
                 _Path = value;
-                Name = System.IO.Path.GetFileName(value);
-                ModificationDate = System.IO.File.GetLastWriteTime(value);
+
+                if (System.IO.File.Exists(Path))
+                {
+                    Name = System.IO.Path.GetFileName(value);
+                    ModificationDate = System.IO.File.GetLastWriteTime(value);
+                }
+                else
+                {
+                    Name = Path;
+                    ModificationDate = new DateTime();
+                }
             }
         }
 
@@ -31,9 +40,13 @@ namespace MyWindowsMediaPlayer.Model
         public enum MediaType { MUSIC, VIDEO, PICTURE };
         public MediaType Type { get; set; }
 
+        // IS STREAM
+        public bool Stream { get; set; }
+
         // CTOR
-        public Media(String path)
+        public Media(String path, bool stream)
         {
+            Stream = stream;
             Path = path;
         }
 

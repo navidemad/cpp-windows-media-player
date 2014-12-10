@@ -14,6 +14,8 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="5"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0" SelectedItem="{ Binding PictureViewModel.CurrentPicture }" ItemsSource="{ Binding PictureViewModel.Pictures }" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -26,14 +28,19 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </DataGrid>
-        <Grid Grid.Row="2">
+
+        <TextBox Grid.Row="2" Text="{ Binding PictureViewModel.LinkInput, UpdateSourceTrigger=PropertyChanged }" />
+        
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Command="{ Binding PictureViewModel.Add }" FontWeight="Bold" Content="Ajouter" Foreground="White" Background="DodgerBlue" />
-            <Button Grid.Column="1" Command="{ Binding PictureViewModel.Delete }" CommandParameter="{ Binding PictureViewModel.CurrentPicture }" FontWeight="Bold" Content="Supprimer" />
+            <Button Grid.Column="0" Command="{ Binding PictureViewModel.AddLink }" CommandParameter="{ Binding PictureViewModel.LinkInput }" FontWeight="Bold" Content="Ajouter le lien" />
+            <Button Grid.Column="1" Command="{ Binding PictureViewModel.AddFile }" FontWeight="Bold" Content="Ajouter un fichier" Foreground="White" Background="DodgerBlue" />
+            <Button Grid.Column="2" Command="{ Binding PictureViewModel.Delete }" CommandParameter="{ Binding PictureViewModel.CurrentPicture }" FontWeight="Bold" Content="Supprimer" />
         </Grid>
     </Grid>
 

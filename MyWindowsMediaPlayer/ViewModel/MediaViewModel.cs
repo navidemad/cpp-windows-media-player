@@ -88,7 +88,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         public void PlayMedia(Model.Media media)
         {
-            if (media == null || System.IO.File.Exists(media.Path) == false)
+            if (media == null || (media.Stream == false && System.IO.File.Exists(media.Path) == false))
                 return;
 
             switch (media.Type)
@@ -115,6 +115,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             MediaElement.Show();
             Image.Hide();
             Play();
+
             IsPlayingMedia = true;
         }
 

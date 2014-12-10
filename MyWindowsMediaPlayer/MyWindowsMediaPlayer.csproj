@@ -85,9 +85,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\AddMusicCommand.cs" />
-    <Compile Include="Command\AddPictureCommand.cs" />
-    <Compile Include="Command\AddVideoCommand.cs" />
+    <Compile Include="Command\AddMusicFileCommand.cs" />
+    <Compile Include="Command\AddMusicLinkCommand.cs" />
+    <Compile Include="Command\AddPictureFileCommand.cs" />
+    <Compile Include="Command\AddPictureLinkCommand.cs" />
+    <Compile Include="Command\AddVideoFileCommand.cs" />
+    <Compile Include="Command\AddVideoLinkCommand.cs" />
     <Compile Include="Command\DeleteMusicCommand.cs" />
     <Compile Include="Command\DeletePictureCommand.cs" />
     <Compile Include="Command\DeleteVideoCommand.cs" />

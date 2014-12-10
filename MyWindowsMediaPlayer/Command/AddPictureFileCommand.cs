@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyWindowsMediaPlayer.Command
 {
-    class AddVideoCommand : Command
+    class AddPictureFileCommand : Command
     {
-        Action<Model.Video> Add;
+        Action<Model.Picture> Add;
 
-        public AddVideoCommand(Action<Model.Video> add)
+        public AddPictureFileCommand(Action<Model.Picture> add)
         {
             Add = add;
         }
@@ -26,11 +26,11 @@ namespace MyWindowsMediaPlayer.Command
                 return;
 
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            openFileDialog.Filter = "MP4 Files (.mp4)|*.mp4|WMV Files (.wmv)|*.wmv|All Files (*.*)|*.*";
+            openFileDialog.Filter = "PNG Files (.png)|*.png|JPG Files (.jpg)|*.jpg|JPEG Files (.jpeg)|*.jpeg|All Files (*.*)|*.*";
             openFileDialog.FilterIndex = 1;
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                Add(new Model.Video(openFileDialog.FileName));
+                Add(new Model.Picture(openFileDialog.FileName));
         }
     }
 }
