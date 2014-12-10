@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows.Controls;
 
-namespace MyWindowsMediaPlayer
+namespace MyWindowsMediaPlayer.View
 {
 
     /// <summary>
