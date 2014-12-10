@@ -38,14 +38,6 @@ namespace MyWindowsMediaPlayer.ViewModel
         public Media.Video MediaElement { get; set; }
         public Media.Image Image { get; set; }
 
-        public System.Windows.Media.ImageSource PrevIcon { get; set; }
-        public System.Windows.Media.ImageSource NextIcon { get; set; }
-        public System.Windows.Media.ImageSource PlayIcon { get; set; }
-        public System.Windows.Media.ImageSource StopIcon { get; set; }
-        public System.Windows.Media.ImageSource PauseIcon { get; set; }
-        public System.Windows.Media.ImageSource SpeedDownIcon { get; set; }
-        public System.Windows.Media.ImageSource SpeedUpIcon { get; set; }
-
         private String _CurrentMediaName;
         public String CurrentMediaName
         {
@@ -79,14 +71,6 @@ namespace MyWindowsMediaPlayer.ViewModel
             PrevMediaCommand = new Command.PrevMediaCommand(PrevMedia);
 
             CurrentMediaName = "Current Media";
-
-            PrevIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/prev_icon.png"));
-            NextIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/next_icon.png"));
-            PlayIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/play_icon.png"));
-            PauseIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/pause_icon.png"));
-            StopIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/stop_icon.png"));
-            SpeedUpIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/speed_up_icon.png"));
-            SpeedDownIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/speed_down_icon.png"));
 
             Image = new Media.Image();
             MediaElement = new Media.Video();
