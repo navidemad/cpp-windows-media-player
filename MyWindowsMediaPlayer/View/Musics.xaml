@@ -18,11 +18,11 @@
         
         <DataGrid Grid.Row="0" SelectedItem="{ Binding MusicViewModel.CurrentMusic }" ItemsSource="{ Binding MusicViewModel.Musics }" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Title }" Header="Titre" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Artists }" Header="Artiste" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Album }" Header="Album" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" Width="*" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Title }" Header="Titre" Width="*" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Artists }" Header="Artiste" Width="*" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Album }" Header="Album" Width="*" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" Width="*" />
             </DataGrid.Columns>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
