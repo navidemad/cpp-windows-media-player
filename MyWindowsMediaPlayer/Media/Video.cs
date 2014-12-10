@@ -77,7 +77,7 @@ namespace MyWindowsMediaPlayer.Media
 
         public void UpgradeSpeed()
         {
-            if (SpeedRatio > 1)
+            if (SpeedRatio >= 1)
                 ++SpeedRatio;
             else
                 SpeedRatio += 0.1;

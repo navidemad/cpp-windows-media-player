@@ -203,9 +203,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="images\WindowsMediaPlayerLogo.jpg" />
+    <Resource Include="images\WindowsMediaPlayerLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
