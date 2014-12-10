@@ -1,0 +1,13 @@
+Fonctionnalités importantes:
+ > filtres
+ > playlists
+
+A patcher/Ameliorer
+ > Accélération
+ > Slider
+
+Bonus
+ > Fullscreen
+ > Touche espace (play / pause)
+ > Changement de thème
+ > Drag & Drop
