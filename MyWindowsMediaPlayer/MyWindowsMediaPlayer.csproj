@@ -49,6 +49,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FirstFloor.ModernUI, Version=1.0.6.0, Culture=neutral, PublicKeyToken=2d21ec3cd074c59a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ModernUI.WPF.1.0.6\lib\net45\FirstFloor.ModernUI.dll</HintPath>
+    </Reference>
     <Reference Include="Id3">
       <HintPath>dependencies\Id3.dll</HintPath>
     </Reference>
@@ -99,6 +103,24 @@
     <Compile Include="Command\StopMediaCommand.cs" />
     <Compile Include="Media\Image.cs" />
     <Compile Include="Media\Video.cs" />
+    <Compile Include="View\MediaPlayer.xaml.cs">
+      <DependentUpon>MediaPlayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Musics.xaml.cs">
+      <DependentUpon>Musics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Playlists.xaml.cs">
+      <DependentUpon>Playlists.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Videos.xaml.cs">
+      <DependentUpon>Videos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pictures.xaml.cs">
+      <DependentUpon>Pictures.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MediaViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
     <Compile Include="ViewModel\PictureViewModel.cs" />
@@ -120,6 +142,30 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\MediaPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Musics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Playlists.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Videos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pictures.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindowDataContext.cs" />
@@ -145,7 +191,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -155,9 +203,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="images\WindowsMediaPlayerLogo.jpg" />
   </ItemGroup>

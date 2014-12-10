@@ -12,22 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FirstFloor.ModernUI.Windows.Controls;
 
-namespace MyWindowsMediaPlayer
+namespace MyWindowsMediaPlayer.View
 {
-
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour Playlists.xaml
     /// </summary>
-    public partial class MainWindow : ModernWindow
+    public partial class Playlists : UserControl
     {
-        public MainWindow()
+        public Playlists()
         {
             InitializeComponent();
 
             // set dataContext
-            DataContext = new MainWindowDataContext {
+            DataContext = new MainWindowDataContext
+            {
                 PlayListViewModel = ViewModel.PlayListViewModel.getInstance(),
                 MusicViewModel = ViewModel.MusicViewModel.getInstance(),
                 VideoViewModel = ViewModel.VideoViewModel.getInstance(),
@@ -35,6 +34,5 @@ namespace MyWindowsMediaPlayer
                 MediaViewModel = ViewModel.MediaViewModel.getInstance()
             };
         }
-
     }
 }

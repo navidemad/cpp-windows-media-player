@@ -59,15 +59,5 @@ namespace MyWindowsMediaPlayer.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap WindowsMediaPlayerLogo {
-            get {
-                object obj = ResourceManager.GetObject("WindowsMediaPlayerLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

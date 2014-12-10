@@ -90,7 +90,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
             Image = new Media.Image();
             MediaElement = new Media.Video();
-            Image.Display(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.jpg");
+            Image.Display(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.png");
         }
 
         public void PlayPlaylist(Model.Playlist playlist)
@@ -131,7 +131,6 @@ namespace MyWindowsMediaPlayer.ViewModel
             MediaElement.Show();
             Image.Hide();
             Play();
-
             IsPlayingMedia = true;
         }
 
@@ -141,7 +140,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             MediaElement.Hide();
             Play();
 
-            Image.Display(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.jpg");
+            Image.Display(AppDomain.CurrentDomain.BaseDirectory + "../../images/WindowsMediaPlayerLogo.png");
             Image.Show();
 
             IsPlayingMedia = true;

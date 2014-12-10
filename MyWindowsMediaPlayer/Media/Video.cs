@@ -10,8 +10,8 @@ namespace MyWindowsMediaPlayer.Media
     {
         System.Windows.Threading.DispatcherTimer _timer = null;
 
-        private int _CurrentTime = 0;
-        public int CurrentTime
+        private TimeSpan _CurrentTime;
+        public TimeSpan CurrentTime
         {
             get { return _CurrentTime; }
             set
@@ -21,8 +21,8 @@ namespace MyWindowsMediaPlayer.Media
             }
         }
 
-        private int _MaxDuration = 0;
-        public int MaxDuration
+        private TimeSpan _MaxDuration;
+        public TimeSpan MaxDuration
         {
             get { return _MaxDuration; }
             set
@@ -34,14 +34,19 @@ namespace MyWindowsMediaPlayer.Media
 
         public Video()
         {
+            CurrentTime = Position;
+            MaxDuration = Position;
             LoadedBehavior = System.Windows.Controls.MediaState.Manual;
         }
 
         public void updateTime(object sender, EventArgs e)
         {
-            CurrentTime = (int)Position.TotalSeconds;
+            CurrentTime = Position;
+
             if (NaturalDuration.HasTimeSpan)
-                MaxDuration = (int)NaturalDuration.TimeSpan.TotalSeconds;
+                MaxDuration = NaturalDuration.TimeSpan;
+            else
+                MaxDuration = Position;
         }
 
         public void Display(String path)
