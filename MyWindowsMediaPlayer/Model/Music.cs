@@ -11,18 +11,28 @@ namespace MyWindowsMediaPlayer.Model
         public Music(String path, bool stream = false) : base(path, stream) {
             Type = Media.MediaType.MUSIC;
 
+            Title = "";
+            Artists = "";
+            Album = "";
+
             if (stream == false)
                 extractMp3Info();
         }
 
         public void extractMp3Info()
         {
-            Id3.Mp3File mp3File = new Id3.Mp3File(Path);
-            Id3.Id3Tag tag = mp3File.GetTag(Id3.Id3TagFamily.FileStartTag);
+            byte[] b = new byte[128];
 
-            Artists = tag.Artists.Value;
-            Title = tag.Title.Value;
-            Album = tag.Album.Value;
+            System.IO.FileStream fs = new System.IO.FileStream(Path, System.IO.FileMode.Open);
+            fs.Seek(-128, System.IO.SeekOrigin.End);
+            fs.Read(b, 0, 128);
+
+            if (System.Text.Encoding.Default.GetString(b, 0, 3).CompareTo("TAG") == 0) 
+            {
+                Title = System.Text.Encoding.Default.GetString(b, 3, 3).TrimEnd('\0');
+                Artists = System.Text.Encoding.Default.GetString(b, 33, 30).TrimEnd('\0');
+                Album = System.Text.Encoding.Default.GetString(b, 63, 30).TrimEnd('\0');
+            }
         }
 
         public String Artists { get; set; }
