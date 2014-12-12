@@ -18,22 +18,49 @@ namespace MyWindowsMediaPlayer.View
     /// <summary>
     /// Logique d'interaction pour Menu.xaml
     /// </summary>
-    public partial class Menu : Page
+    public partial class Menu : UserControl
     {
+        class Link
+        {
+            public String Name { get; set; }
+            public String Page { get; set; }
+        }
+
+        class ViewDataContext : System.ComponentModel.INotifyPropertyChanged
+        {
+            private Link _CurrentPage;
+            public Link CurrentPage
+            {
+                get { return _CurrentPage; }
+                set
+                {
+                    _CurrentPage = value;
+                    RaisePropertyChanged("CurrentPage");
+                }
+            }
+
+            public List<Link> Pages { get; set; }
+
+            public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+            public void RaisePropertyChanged(String property)
+            {
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+
         public Menu()
         {
             InitializeComponent();
 
-            // set dataContext
-            DataContext = new MainWindowDataContext
-            {
-                PlayListViewModel = ViewModel.PlayListViewModel.getInstance(),
-                MusicViewModel = ViewModel.MusicViewModel.getInstance(),
-                VideoViewModel = ViewModel.VideoViewModel.getInstance(),
-                PictureViewModel = ViewModel.PictureViewModel.getInstance(),
-                MediaViewModel = ViewModel.MediaViewModel.getInstance(),
-                SettingsViewModel = ViewModel.SettingsViewModel.getInstance()
+            List<Link> pages = new List<Link> {
+                new Link { Name = "Playlists", Page = "Playlists.xaml" },
+                new Link { Name = "Images", Page = "Pictures.xaml" },
+                new Link { Name = "Musiques", Page = "Musics.xaml" },
+                new Link { Name = "Videos", Page = "Videos.xaml" }
             };
+
+            DataContext = new ViewDataContext { CurrentPage = pages[0], Pages = pages };
         }
     }
 }

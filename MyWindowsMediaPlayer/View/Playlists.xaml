@@ -4,25 +4,23 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-      xmlns:mui="http://firstfloorsoftware.com/ModernUI"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
-
-    <Grid Style="{StaticResource ContentRoot}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="5"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" SelectedItem="{ Binding PlayListViewModel.CurrentPlaylist }" ItemsSource="{ Binding PlayListViewModel.Playlists }" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="0" SelectedItem="{ Binding ViewModel.CurrentPlaylist }" ItemsSource="{ Binding ViewModel.Playlists }" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" Width="*" />
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" Width="*" />
             </DataGrid.Columns>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
-                    <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectPlaylistCommand }" CommandParameter="{ Binding PlayListViewModel.CurrentPlaylist }" />
+                    <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectPlaylistCommand }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </DataGrid>
@@ -33,9 +31,9 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Command="{ Binding PlayListViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer"/>
-            <Button Grid.Column="1" Command="{ Binding PlayListViewModel.Edit }" CommandParameter="{ Binding PlayListViewModel.CurrentPlaylist }" FontWeight="Bold" Content="Editer" />
-            <Button Grid.Column="2" Command="{ Binding PlayListViewModel.Delete }" CommandParameter="{ Binding PlayListViewModel.CurrentPlaylist }" FontWeight="Bold" Content="Supprimer" />
+            <Button Grid.Column="0" Command="{ Binding ViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer"/>
+            <Button Grid.Column="1" Command="{ Binding ViewModel.Edit }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" FontWeight="Bold" Content="Editer" />
+            <Button Grid.Column="2" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" FontWeight="Bold" Content="Supprimer" />
         </Grid>
     </Grid>
 

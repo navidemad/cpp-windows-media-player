@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FirstFloor.ModernUI.Windows.Controls;
 
 namespace MyWindowsMediaPlayer.View
 {
@@ -20,21 +19,46 @@ namespace MyWindowsMediaPlayer.View
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : ModernWindow
+    public partial class MainWindow : Window
     {
+        class Link
+        {
+            public String Name { get; set; }
+            public String Page { get; set; }
+        }
+
+        class ViewDataContext : System.ComponentModel.INotifyPropertyChanged
+        {
+            private Link _CurrentPage;
+            public Link CurrentPage {
+                get { return _CurrentPage; }
+                set
+                {
+                    _CurrentPage = value;
+                    RaisePropertyChanged("CurrentPage");
+                }
+            }
+            
+            public List<Link> Pages { get; set; }
+
+            public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+            public void RaisePropertyChanged(String property)
+            {
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
 
-            // set dataContext
-            DataContext = new MainWindowDataContext {
-                PlayListViewModel = ViewModel.PlayListViewModel.getInstance(),
-                MusicViewModel = ViewModel.MusicViewModel.getInstance(),
-                VideoViewModel = ViewModel.VideoViewModel.getInstance(),
-                PictureViewModel = ViewModel.PictureViewModel.getInstance(),
-                MediaViewModel = ViewModel.MediaViewModel.getInstance(),
-                SettingsViewModel = ViewModel.SettingsViewModel.getInstance()
+            List<Link> pages = new List<Link> {
+                new Link { Name = "Menu", Page = "Menu.xaml" },
+                new Link { Name = "MediaPlayer", Page = "MediaPlayer.xaml" }
             };
+
+            DataContext = new ViewDataContext { CurrentPage = pages[0], Pages = pages };
         }
 
     }

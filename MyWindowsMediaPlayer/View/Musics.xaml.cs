@@ -20,20 +20,17 @@ namespace MyWindowsMediaPlayer.View
     /// </summary>
     public partial class Musics : UserControl
     {
+        class ViewDataContext
+        {
+            public ViewModel.MusicViewModel ViewModel { get; set; }
+            public ViewModel.MediaViewModel MediaViewModel { get; set; }
+        }
+
         public Musics()
         {
             InitializeComponent();
 
-            // set dataContext
-            DataContext = new MainWindowDataContext
-            {
-                PlayListViewModel = ViewModel.PlayListViewModel.getInstance(),
-                MusicViewModel = ViewModel.MusicViewModel.getInstance(),
-                VideoViewModel = ViewModel.VideoViewModel.getInstance(),
-                PictureViewModel = ViewModel.PictureViewModel.getInstance(),
-                MediaViewModel = ViewModel.MediaViewModel.getInstance(),
-                SettingsViewModel = ViewModel.SettingsViewModel.getInstance()
-            };
+            DataContext = new ViewDataContext { ViewModel = ViewModel.MusicViewModel.getInstance(), MediaViewModel = ViewModel.MediaViewModel.getInstance() };
         }
     }
 }

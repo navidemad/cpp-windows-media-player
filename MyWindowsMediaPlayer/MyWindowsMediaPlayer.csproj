@@ -49,10 +49,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FirstFloor.ModernUI, Version=1.0.6.0, Culture=neutral, PublicKeyToken=2d21ec3cd074c59a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ModernUI.WPF.1.0.6\lib\net45\FirstFloor.ModernUI.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -97,7 +93,6 @@
     <Compile Include="Command\StopMediaCommand.cs" />
     <Compile Include="Media\Image.cs" />
     <Compile Include="Media\Video.cs" />
-    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="View\MediaPlayer.xaml.cs">
       <DependentUpon>MediaPlayer.xaml</DependentUpon>
     </Compile>
@@ -109,9 +104,6 @@
     </Compile>
     <Compile Include="View\Playlists.xaml.cs">
       <DependentUpon>Playlists.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Settings.xaml.cs">
-      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Videos.xaml.cs">
       <DependentUpon>Videos.xaml</DependentUpon>
@@ -156,10 +148,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Settings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Videos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,7 +158,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\MainWindowDataContext.cs" />
     <Compile Include="Model\Media.cs" />
     <Compile Include="Model\Music.cs" />
     <Compile Include="Model\Picture.cs" />
