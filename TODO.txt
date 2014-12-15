@@ -6,7 +6,6 @@ A patcher/Ameliorer
  > Slider
 
 Bonus
- > Fullscreen
  > Touche espace (play / pause)
  > Changement de thème
  > Drag & Drop

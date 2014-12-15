@@ -30,13 +30,15 @@ namespace MyWindowsMediaPlayer.View
             public System.Windows.Media.ImageSource StopIcon { get; set; }
             public System.Windows.Media.ImageSource NextIcon { get; set; }
             public System.Windows.Media.ImageSource SpeedUpIcon { get; set; }
+            public System.Windows.Media.ImageSource FullScreenIcon { get; set; }
         }
 
         public MediaPlayer()
         {
             InitializeComponent();
 
-            DataContext = new ViewDataContext {
+            DataContext = new ViewDataContext
+            {
                 ViewModel = ViewModel.MediaViewModel.getInstance(),
                 SpeedDownIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/speed_down_icon.png")),
                 PrevIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/prev_icon.png")),
@@ -44,8 +46,41 @@ namespace MyWindowsMediaPlayer.View
                 PauseIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/pause_icon.png")),
                 StopIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/stop_icon.png")),
                 NextIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/next_icon.png")),
-                SpeedUpIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/speed_up_icon.png"))
+                SpeedUpIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/speed_up_icon.png")),
+                FullScreenIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/full_screen_icon.png"))
             };
+
+            App.Current.MainWindow.PreviewKeyDown += new KeyEventHandler(TurnOffFullScreen);
+        }
+
+        private void TurnOffFullScreen(object sender, KeyEventArgs e)
+        {
+            var window = App.Current.MainWindow as MainWindow;
+
+            if (window != null && e.Key == Key.Escape)
+            {
+                MediaTitle.Visibility = System.Windows.Visibility.Visible;
+                MediaControl.Visibility = System.Windows.Visibility.Visible;
+
+                window.NavigationPanel.Visibility = System.Windows.Visibility.Visible;
+                window.WindowStyle = WindowStyle.SingleBorderWindow;
+                window.WindowState = WindowState.Normal;
+            }
+        }
+
+        private void TurnOnFullScreen(object sender, RoutedEventArgs e)
+        {
+            var window = App.Current.MainWindow as MainWindow;
+
+            if (window != null)
+            {
+                MediaTitle.Visibility = System.Windows.Visibility.Collapsed;
+                MediaControl.Visibility = System.Windows.Visibility.Collapsed;
+
+                window.NavigationPanel.Visibility = System.Windows.Visibility.Collapsed;
+                window.WindowStyle = WindowStyle.None;
+                window.WindowState = WindowState.Maximized;
+            }
         }
     }
 }

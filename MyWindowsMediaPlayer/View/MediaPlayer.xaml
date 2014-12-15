@@ -15,11 +15,11 @@
             <RowDefinition Height="125"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{ Binding ViewModel.CurrentMediaName }" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" />
+        <TextBlock x:Name="MediaTitle" Text="{ Binding ViewModel.CurrentMediaName }" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" />
         <ContentPresenter Grid.Row="1" Grid.Column="0" Margin="10" Content="{ Binding ViewModel.MediaElement }"/>
         <ContentPresenter Grid.Row="1" Grid.Column="0" Margin="10" Content="{ Binding ViewModel.Image }"/>
 
-        <Grid Grid.Row="2">
+        <Grid x:Name="MediaControl" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="25"></ColumnDefinition>
@@ -51,6 +51,7 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0" Grid.Row="0" Command="{ Binding ViewModel.SpeedDownMediaCommand }">
@@ -73,6 +74,9 @@
                     </Button>
                     <Button Grid.Column="6" Grid.Row="0" Command="{ Binding ViewModel.SpeedUpMediaCommand }">
                         <Image Source="{ Binding SpeedUpIcon }" />
+                    </Button>
+                    <Button Grid.Column="7" Grid.Row="0" Click="TurnOnFullScreen">
+                        <Image Source="{ Binding FullScreenIcon }" />
                     </Button>
                 </Grid>
             </Grid>

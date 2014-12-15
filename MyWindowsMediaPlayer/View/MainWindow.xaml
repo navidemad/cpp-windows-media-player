@@ -5,7 +5,7 @@
         Title="MyWindowsMediaPlayer" Height="768" Width="1024">
 
     <DockPanel>
-            <ListBox DockPanel.Dock="Top" ItemsSource="{ Binding Pages }" SelectedItem="{ Binding CurrentPage }">
+            <ListBox x:Name="NavigationPanel" DockPanel.Dock="Top" ItemsSource="{ Binding Pages }" SelectedItem="{ Binding CurrentPage }">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock FontSize="20" FontWeight="Bold" Margin="10" Text="{ Binding Name }" />
