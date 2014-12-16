@@ -32,5 +32,10 @@ namespace MyWindowsMediaPlayer.View
 
             DataContext = new ViewDataContext { ViewModel = ViewModel.PictureViewModel.getInstance(), MediaViewModel = ViewModel.MediaViewModel.getInstance() };
         }
+
+        private void OnDrop(object sender, DragEventArgs e)
+        {
+            ((ViewDataContext)DataContext).ViewModel.DropFile.Execute(e);
+        }
     }
 }

@@ -48,6 +48,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             AddLink = new Command.AddPictureLinkCommand(AddPicture);
             AddFile = new Command.AddPictureFileCommand(AddPicture);
+            DropFile = new Command.DropPictureFileCommand(AddPicture);
             Delete = new Command.DeletePictureCommand(RemovePicture);
 
             LoadData();
@@ -116,6 +117,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         // COMMANDS
         public Command.DeletePictureCommand Delete { get; set; }
         public Command.AddPictureFileCommand AddFile { get; set; }
+        public Command.DropPictureFileCommand DropFile { get; set; }
         public Command.AddPictureLinkCommand AddLink { get; set; }
     }
 }

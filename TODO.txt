@@ -8,4 +8,3 @@ A patcher/Ameliorer
 Bonus
  > Touche espace (play / pause)
  > Changement de thème
- > Drag & Drop

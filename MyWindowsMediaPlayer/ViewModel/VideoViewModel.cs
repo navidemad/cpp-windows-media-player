@@ -48,6 +48,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             AddLink = new Command.AddVideoLinkCommand(AddVideo);
             AddFile = new Command.AddVideoFileCommand(AddVideo);
+            DropFile = new Command.DropVideoFileCommand(AddVideo);
             Delete = new Command.DeleteVideoCommand(RemoveVideo);
 
             LoadData();
@@ -116,6 +117,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         // COMMANDS
         public Command.DeleteVideoCommand Delete { get; set; }
         public Command.AddVideoFileCommand AddFile { get; set; }
+        public Command.DropVideoFileCommand DropFile { get; set; }
         public Command.AddVideoLinkCommand AddLink { get; set; }
     }
 }

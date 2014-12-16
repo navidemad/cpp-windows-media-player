@@ -81,6 +81,9 @@
     <Compile Include="Command\DeleteMusicCommand.cs" />
     <Compile Include="Command\DeletePictureCommand.cs" />
     <Compile Include="Command\DeleteVideoCommand.cs" />
+    <Compile Include="Command\DropMusicFileCommand.cs" />
+    <Compile Include="Command\DropPictureFileCommand.cs" />
+    <Compile Include="Command\DropVideoFileCommand.cs" />
     <Compile Include="Command\EditPlaylistCommand.cs" />
     <Compile Include="Command\NextMediaCommand.cs" />
     <Compile Include="Command\PauseMediaCommand.cs" />

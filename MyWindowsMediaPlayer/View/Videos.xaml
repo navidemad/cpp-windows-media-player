@@ -15,7 +15,7 @@
             <RowDefinition Height="5"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" SelectedItem="{ Binding ViewModel.CurrentVideo }" ItemsSource="{ Binding ViewModel.Videos }" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="0" SelectedItem="{ Binding ViewModel.CurrentVideo }" ItemsSource="{ Binding ViewModel.Videos }" AutoGenerateColumns="False" AllowDrop="True" Drop="OnDrop">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" Width="*" />
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" Width="*" />

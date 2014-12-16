@@ -48,6 +48,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             AddLink = new Command.AddMusicLinkCommand(AddMusic);
             AddFile = new Command.AddMusicFileCommand(AddMusic);
+            DropFile = new Command.DropMusicFileCommand(AddMusic);
             Delete = new Command.DeleteMusicCommand(RemoveMusic);
 
             LoadData();
@@ -117,5 +118,6 @@ namespace MyWindowsMediaPlayer.ViewModel
         public Command.DeleteMusicCommand Delete { get; set; }
         public Command.AddMusicFileCommand AddFile { get; set; }
         public Command.AddMusicLinkCommand AddLink { get; set; }
+        public Command.DropMusicFileCommand DropFile { get; set; }
     }
 }
