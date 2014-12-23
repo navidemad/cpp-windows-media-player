@@ -7,10 +7,28 @@
       d:DesignHeight="300" d:DesignWidth="300">
 
     <DockPanel>
-        <ListBox DockPanel.Dock="Top" ItemsSource="{ Binding Pages }" SelectedItem="{ Binding CurrentPage }">
+        <ListBox BorderThickness="0" Background="LightSteelBlue" DockPanel.Dock="Top" ItemsSource="{ Binding Pages }" SelectedItem="{ Binding CurrentPage }">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                        <SolidColorBrush x:Key="{x:Static Member=SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock FontWeight="Bold" Margin="20,0,20,0" Text="{ Binding Name }" />
+                    <TextBlock Padding="5" Foreground="White" FontWeight="Bold" Margin="20,0,20,0" Text="{ Binding Name }">
+                        <TextBlock.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={ RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem }}}" Value="True">
+                                        <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
 
