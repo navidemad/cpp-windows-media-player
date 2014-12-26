@@ -4,7 +4,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="MyWindowsMediaPlayer" Height="768" Width="1024">
 
-    <DockPanel>
+    <DockPanel Background="#FF383838">
         <ListBox BorderThickness="0" Background="SteelBlue" x:Name="NavigationPanel" DockPanel.Dock="Top" ItemsSource="{ Binding Pages }" SelectedItem="{ Binding CurrentPage }">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
