@@ -20,6 +20,12 @@
                 <Trigger Property="Control.IsFocused" Value="True">
                     <Setter Property="Control.FontWeight" Value="Bold" />
                 </Trigger>
+                <Trigger Property="Control.IsEnabled" Value="False">
+                    <Setter Property="Control.Foreground" Value="Gray" />
+                </Trigger>
+                <Trigger Property="Control.IsEnabled" Value="True">
+                    <Setter Property="Control.Foreground" Value="White" />
+                </Trigger>
             </Style.Triggers>
         </Style>
 
@@ -63,7 +69,7 @@
             </i:Interaction.Triggers>
         </DataGrid>
 
-        <TextBox Grid.Row="2" Text="{ Binding ViewModel.LinkInput, UpdateSourceTrigger=PropertyChanged }" />
+        <TextBox Grid.Row="2" CaretBrush="White" Foreground="White" FontWeight="Bold" Background="Transparent" Text="{ Binding ViewModel.LinkInput, UpdateSourceTrigger=PropertyChanged }" />
 
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -72,9 +78,9 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Command="{ Binding ViewModel.AddLink }" CommandParameter="{ Binding ViewModel.LinkInput }" FontWeight="Bold" Content="Ajouter le lien" />
-            <Button Grid.Column="1" Command="{ Binding ViewModel.AddFile }" FontWeight="Bold" Content="Ajouter un fichier" Foreground="White" Background="DodgerBlue" />
-            <Button Grid.Column="2" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentVideo }" FontWeight="Bold" Content="Supprimer" />
+            <Button Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.AddLink }" CommandParameter="{ Binding ViewModel.LinkInput }" FontWeight="Bold" Content="Ajouter le lien" Background="SteelBlue" />
+            <Button Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.AddFile }" FontWeight="Bold" Content="Ajouter un fichier" Background="SteelBlue" />
+            <Button Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentVideo }" FontWeight="Bold" Content="Supprimer" Background="DarkRed" />
         </Grid>
     </Grid>
 

@@ -20,6 +20,12 @@
                 <Trigger Property="Control.IsFocused" Value="True">
                     <Setter Property="Control.FontWeight" Value="Bold" />
                 </Trigger>
+                <Trigger Property="Control.IsEnabled" Value="False">
+                    <Setter Property="Control.Foreground" Value="Gray" />
+                </Trigger>
+                <Trigger Property="Control.IsEnabled" Value="True">
+                    <Setter Property="Control.Foreground" Value="White" />
+                </Trigger>
             </Style.Triggers>
         </Style>
 
@@ -67,9 +73,9 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Command="{ Binding ViewModel.Add }" FontWeight="Bold" Foreground="White" Background="DodgerBlue" Content="Créer"/>
-            <Button Grid.Column="1" Command="{ Binding ViewModel.Edit }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" FontWeight="Bold" Content="Editer" />
-            <Button Grid.Column="2" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" FontWeight="Bold" Content="Supprimer" />
+            <Button Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.Add }" FontWeight="Bold" Background="SteelBlue" Content="Créer" />
+            <Button Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.Edit }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" FontWeight="Bold" Content="Editer" Background="SteelBlue" />
+            <Button Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" FontWeight="Bold" Content="Supprimer" Background="DarkRed" />
         </Grid>
     </Grid>
 
