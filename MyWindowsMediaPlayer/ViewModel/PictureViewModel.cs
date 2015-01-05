@@ -10,7 +10,9 @@ namespace MyWindowsMediaPlayer.ViewModel
     {
         private int _CurrentIndex = 0;
         public System.Collections.ObjectModel.ObservableCollection<Model.Picture> Pictures { get; set; }
+        public System.Collections.ObjectModel.ObservableCollection<Model.Picture> PicturesTmp { get; set; }
 
+       
         private Model.Picture _CurrentPicture = null;
         public Model.Picture CurrentPicture
         {
@@ -35,6 +37,29 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
+        private String _SearchInput = "";
+        public String SearchByText
+        {
+            get { return _SearchInput; }
+            set
+            {        
+                _SearchInput = value;
+                Console.WriteLine(PicturesTmp.Count);
+                Pictures.Clear();
+
+                var medias = from media in PicturesTmp where media.Name.Contains(value) select media;
+                Console.WriteLine(PicturesTmp.Count);
+                
+                foreach (var media in medias)
+                {
+                    Pictures.Add(new Model.Picture(media.Path, media.Stream));
+                    Console.WriteLine("=====================COUCOU=======================");
+                    Console.WriteLine("=====================MA BITE======================");
+                }
+            }
+            //System.Console.WriteLine("With the default new line characters:");
+        }
+
         static private PictureViewModel _Instance = null;
         static public PictureViewModel getInstance()
         {
@@ -57,12 +82,18 @@ namespace MyWindowsMediaPlayer.ViewModel
         public void LoadData()
         {
             Pictures = new System.Collections.ObjectModel.ObservableCollection<Model.Picture>();
+            PicturesTmp = new System.Collections.ObjectModel.ObservableCollection<Model.Picture>();
             XML.MediaXML mediaXML = new XML.MediaXML();
 
             mediaXML.Load("pictures.xml");
             List<Tuple<String, Boolean>> medias = mediaXML.GetMedias();
             foreach (var media in medias)
-                Pictures.Add(new Model.Picture(media.Item1, media.Item2));
+                {
+                    Model.Picture pics_1 = new Model.Picture(media.Item1, media.Item2);
+                    Model.Picture pics_2 = new Model.Picture(media.Item1, media.Item2);
+                    PicturesTmp.Add(pics_1);
+                    Pictures.Add(pics_2);     
+                }
         }
 
         public void RemovePicture(Model.Picture picture)
@@ -74,6 +105,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             mediaXML.WriteInFile("pictures.xml");
 
             Pictures.Remove(picture);
+            PicturesTmp.Remove(picture);
         }
 
         public void AddPicture(Model.Picture picture)
@@ -87,6 +119,7 @@ namespace MyWindowsMediaPlayer.ViewModel
                 mediaXML.WriteInFile("pictures.xml");
 
                 Pictures.Add(picture);
+                PicturesTmp.Add(picture);
             }
         }
 
