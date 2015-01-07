@@ -48,7 +48,7 @@ namespace MyWindowsMediaPlayer.ViewModel
                 Pictures.Clear();
 
                 var medias = from media in PicturesTmp where media.Name.Contains(value) select media;
-                Console.WriteLine(PicturesTmp.Count);
+                
                 
                 foreach (var media in medias)
                 {
@@ -100,9 +100,19 @@ namespace MyWindowsMediaPlayer.ViewModel
             mediaXML.Load("pictures.xml");
             mediaXML.Remove(picture.Path);
             mediaXML.WriteInFile("pictures.xml");
+            String namePathFile = picture.Path;
 
             Pictures.Remove(picture);
-            PicturesTmp.Remove(picture);
+            var medias = from media in PicturesTmp where media.Path.Contains(namePathFile) select media;
+            var selected = picture;
+            foreach (var media in medias)
+            {
+                Console.WriteLine("======");
+                Console.WriteLine(media.Name);
+                selected = media;
+                  //PicturesTmp.Remove(media);
+            }
+            PicturesTmp.Remove(selected);
         }
 
         public void AddPicture(Model.Picture picture)
