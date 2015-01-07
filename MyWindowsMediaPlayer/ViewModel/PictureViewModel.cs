@@ -53,11 +53,8 @@ namespace MyWindowsMediaPlayer.ViewModel
                 foreach (var media in medias)
                 {
                     Pictures.Add(new Model.Picture(media.Path, media.Stream));
-                    Console.WriteLine("=====================COUCOU=======================");
-                    Console.WriteLine("=====================MA BITE======================");
                 }
             }
-            //System.Console.WriteLine("With the default new line characters:");
         }
 
         static private PictureViewModel _Instance = null;
@@ -118,7 +115,8 @@ namespace MyWindowsMediaPlayer.ViewModel
                 mediaXML.Add(picture.Path, picture.Stream);
                 mediaXML.WriteInFile("pictures.xml");
 
-                Pictures.Add(picture);
+                if (picture.Name.Contains(this._SearchInput))
+                    Pictures.Add(picture);
                 PicturesTmp.Add(picture);
             }
         }
