@@ -10,6 +10,7 @@ namespace MyWindowsMediaPlayer.ViewModel
     {
         private int _CurrentIndex = 0;
         public System.Collections.ObjectModel.ObservableCollection<Model.Playlist> Playlists { get; set; }
+        public System.Collections.ObjectModel.ObservableCollection<Model.Playlist> PlaylistsTmp { get; set; }
 
         private Model.Playlist _CurrentPlaylist = null;
         public Model.Playlist CurrentPlaylist
@@ -24,6 +25,23 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
+        private String _SearchInput = "";
+        public String SearchByText
+        {
+            get { return _SearchInput; }
+            set
+            {
+                _SearchInput = value;
+                Playlists.Clear();
+
+                /*var medias = from media in PlaylistsTmp where media.Name.Contains(value) select media;
+
+                foreach (var media in medias)
+                {
+                    Playlists.Add(new Model.Playlist(media.Path, media.Stream));
+                }*/
+            }
+        }
         static private PlayListViewModel _Instance = null;
         static public PlayListViewModel getInstance()
         {

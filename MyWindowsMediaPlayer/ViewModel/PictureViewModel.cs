@@ -44,11 +44,9 @@ namespace MyWindowsMediaPlayer.ViewModel
             set
             {        
                 _SearchInput = value;
-                Console.WriteLine(PicturesTmp.Count);
                 Pictures.Clear();
 
                 var medias = from media in PicturesTmp where media.Name.Contains(value) select media;
-                
                 
                 foreach (var media in medias)
                 {
@@ -106,12 +104,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             var medias = from media in PicturesTmp where media.Path.Contains(namePathFile) select media;
             var selected = picture;
             foreach (var media in medias)
-            {
-                Console.WriteLine("======");
-                Console.WriteLine(media.Name);
                 selected = media;
-                  //PicturesTmp.Remove(media);
-            }
             PicturesTmp.Remove(selected);
         }
 

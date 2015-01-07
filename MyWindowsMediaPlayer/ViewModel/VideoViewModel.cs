@@ -10,6 +10,7 @@ namespace MyWindowsMediaPlayer.ViewModel
     {
         private int _CurrentIndex = 0;
         public System.Collections.ObjectModel.ObservableCollection<Model.Video> Videos { get; set; }
+        public System.Collections.ObjectModel.ObservableCollection<Model.Video> VideosTmp { get; set; }
 
         private Model.Video _CurrentVideo = null;
         public Model.Video CurrentVideo
@@ -35,6 +36,26 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
+        private String _SearchInput = "";
+        public String SearchByText
+        {
+            get { return _SearchInput; }
+            set
+            {
+                _SearchInput = value;
+                Videos.Clear();
+
+                var medias = from media in VideosTmp where media.Name.Contains(value) select media;
+
+                foreach (var media in medias)
+                {
+                    Videos.Add(new Model.Video(media.Path, media.Stream));
+                }
+            }
+        }
+
+
+
         static private VideoViewModel _Instance = null;
         static public VideoViewModel getInstance()
         {
@@ -57,12 +78,21 @@ namespace MyWindowsMediaPlayer.ViewModel
         public void LoadData()
         {
             Videos = new System.Collections.ObjectModel.ObservableCollection<Model.Video>();
+            VideosTmp = new System.Collections.ObjectModel.ObservableCollection<Model.Video>();
             XML.MediaXML mediaXML = new XML.MediaXML();
 
             mediaXML.Load("videos.xml");
             List<Tuple<String, Boolean>> medias = mediaXML.GetMedias();
+
             foreach (var media in medias)
-                Videos.Add(new Model.Video(media.Item1, media.Item2));
+            {
+                Model.Video pics_1 = new Model.Video(media.Item1, media.Item2);
+                Model.Video pics_2 = new Model.Video(media.Item1, media.Item2);
+                VideosTmp.Add(pics_1);
+                Videos.Add(pics_2);
+            }
+
+
         }
 
         public void RemoveVideo(Model.Video video)
@@ -72,8 +102,16 @@ namespace MyWindowsMediaPlayer.ViewModel
             mediaXML.Load("videos.xml");
             mediaXML.Remove(video.Path);
             mediaXML.WriteInFile("videos.xml");
-
+            String namePathFile = video.Path;
             Videos.Remove(video);
+
+          
+            var medias = from media in VideosTmp where media.Path.Contains(namePathFile) select media;
+            var selected = video;
+            foreach (var media in medias)
+                selected = media;
+            VideosTmp.Remove(selected);
+
         }
 
         public void AddVideo(Model.Video video)
@@ -85,8 +123,10 @@ namespace MyWindowsMediaPlayer.ViewModel
             {
                 mediaXML.Add(video.Path, video.Stream);
                 mediaXML.WriteInFile("videos.xml");
-
-                Videos.Add(video);
+                
+                if (video.Name.Contains(this._SearchInput))
+                    Videos.Add(video);
+                VideosTmp.Add(video);
             }
         }
 

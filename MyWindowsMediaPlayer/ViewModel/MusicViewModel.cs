@@ -10,6 +10,7 @@ namespace MyWindowsMediaPlayer.ViewModel
     {
         private int _CurrentIndex = 0;
         public System.Collections.ObjectModel.ObservableCollection<Model.Music> Musics { get; set; }
+        public System.Collections.ObjectModel.ObservableCollection<Model.Music> MusicsTmp { get; set; }
 
         private Model.Music _CurrentMusic = null;
         public Model.Music CurrentMusic
@@ -35,6 +36,24 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
+        private String _SearchInput = "";
+        public String SearchByText
+        {
+            get { return _SearchInput; }
+            set
+            {
+                _SearchInput = value;
+                Musics.Clear();
+
+                var medias = from media in MusicsTmp where (media.Name.Contains(value) || media.Artists.Contains(value) || media.Album.Contains(value)) select media;
+
+                foreach (var media in medias)
+                {
+                    Musics.Add(new Model.Music(media.Path, media.Stream));
+                }
+            }
+        }
+
         static private MusicViewModel _Instance = null;
         static public MusicViewModel getInstance()
         {
@@ -57,12 +76,19 @@ namespace MyWindowsMediaPlayer.ViewModel
         public void LoadData()
         {
             Musics = new System.Collections.ObjectModel.ObservableCollection<Model.Music>();
+            MusicsTmp = new System.Collections.ObjectModel.ObservableCollection<Model.Music>();
             XML.MediaXML mediaXML = new XML.MediaXML();
 
             mediaXML.Load("musics.xml");
             List<Tuple<String, Boolean>> medias = mediaXML.GetMedias();
+
             foreach (var media in medias)
-                Musics.Add(new Model.Music(media.Item1, media.Item2));
+            {
+                Model.Music pics_1 = new Model.Music(media.Item1, media.Item2);
+                Model.Music pics_2 = new Model.Music(media.Item1, media.Item2);
+                MusicsTmp.Add(pics_1);
+                Musics.Add(pics_2);
+            }
         }
 
         public void RemoveMusic(Model.Music music)
@@ -72,8 +98,15 @@ namespace MyWindowsMediaPlayer.ViewModel
             mediaXML.Load("musics.xml");
             mediaXML.Remove(music.Path);
             mediaXML.WriteInFile("musics.xml");
-
+            String namePathFile = music.Path;
             Musics.Remove(music);
+
+            var medias = from media in MusicsTmp where media.Path.Contains(namePathFile) select media;
+            var selected = music;
+            foreach (var media in medias)
+                selected = media;
+            MusicsTmp.Remove(selected);
+           
         }
 
         public void AddMusic(Model.Music music)
@@ -85,8 +118,9 @@ namespace MyWindowsMediaPlayer.ViewModel
             {
                 mediaXML.Add(music.Path, music.Stream);
                 mediaXML.WriteInFile("musics.xml");
-
-                Musics.Add(music);
+                if (music.Name.Contains(this._SearchInput))
+                    Musics.Add(music);
+                MusicsTmp.Add(music);
             }
         }
 

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300">
+      d:DesignHeight="400" d:DesignWidth="300">
 
     <UserControl.Resources>
         <Style x:Key="Flat">
@@ -52,9 +52,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <DataGrid Background="#FF383838" RowHeaderWidth="0" Grid.Row="0" SelectedItem="{ Binding ViewModel.CurrentPlaylist }" ItemsSource="{ Binding ViewModel.Playlists }" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" Width="*" />
@@ -66,6 +67,8 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </DataGrid>
+        <TextBox Grid.Row="1" CaretBrush="White" Foreground="White" FontWeight="Bold" Background="Transparent" Text="{ Binding ViewModel.SearchByText, UpdateSourceTrigger=PropertyChanged }" />
+
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
