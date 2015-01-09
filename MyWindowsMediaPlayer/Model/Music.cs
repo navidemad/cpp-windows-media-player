@@ -21,17 +21,23 @@ namespace MyWindowsMediaPlayer.Model
 
         public void extractMp3Info()
         {
-            byte[] b = new byte[128];
+            if (System.IO.File.Exists(Path))
+            { 
+                using (System.IO.FileStream fs = new System.IO.FileStream(Path, System.IO.FileMode.Open))
+                {
+                    byte[] b = new byte[128];
 
-            System.IO.FileStream fs = new System.IO.FileStream(Path, System.IO.FileMode.Open);
-            fs.Seek(-128, System.IO.SeekOrigin.End);
-            fs.Read(b, 0, 128);
+                    fs.Seek(-128, System.IO.SeekOrigin.End);
+                    fs.Read(b, 0, 128);
 
-            if (System.Text.Encoding.Default.GetString(b, 0, 3).CompareTo("TAG") == 0) 
-            {
-                Title = System.Text.Encoding.Default.GetString(b, 3, 3).TrimEnd('\0');
-                Artists = System.Text.Encoding.Default.GetString(b, 33, 30).TrimEnd('\0');
-                Album = System.Text.Encoding.Default.GetString(b, 63, 30).TrimEnd('\0');
+                    if (System.Text.Encoding.Default.GetString(b, 0, 3).CompareTo("TAG") == 0)
+                    {
+                        Title = System.Text.Encoding.Default.GetString(b, 3, 3).TrimEnd('\0');
+                        Artists = System.Text.Encoding.Default.GetString(b, 33, 30).TrimEnd('\0');
+                        Album = System.Text.Encoding.Default.GetString(b, 63, 30).TrimEnd('\0');
+                    }
+                    fs.Close();
+                }
             }
         }
 

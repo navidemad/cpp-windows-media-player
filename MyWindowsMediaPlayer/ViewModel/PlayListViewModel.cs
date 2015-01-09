@@ -25,6 +25,16 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
+        private String _NamePlaylist = "";
+        public String NamePlaylist
+        {
+            get { return _NamePlaylist; }
+            set
+            {
+                _NamePlaylist = value;
+            }
+        }
+
         private String _SearchInput = "";
         public String SearchByText
         {
@@ -42,6 +52,7 @@ namespace MyWindowsMediaPlayer.ViewModel
                 }*/
             }
         }
+
         static private PlayListViewModel _Instance = null;
         static public PlayListViewModel getInstance()
         {

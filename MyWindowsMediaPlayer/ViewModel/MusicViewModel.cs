@@ -45,7 +45,7 @@ namespace MyWindowsMediaPlayer.ViewModel
                 _SearchInput = value;
                 Musics.Clear();
 
-                var medias = from media in MusicsTmp where (media.Name.Contains(value) || media.Artists.Contains(value) || media.Album.Contains(value)) select media;
+                var medias = from media in MusicsTmp where (media.Name.ToLower().Contains(value.ToLower()) || media.Artists.ToLower().Contains(value.ToLower()) || media.Album.ToLower().Contains(value.ToLower())) select media;
 
                 foreach (var media in medias)
                 {

@@ -9,22 +9,24 @@
 
     <UserControl.Resources>
         <Style x:Key="Flat">
-            <Setter Property="Control.Background" Value="{x:Null}" />
-            <Setter Property="Control.BorderBrush" Value="{x:Null}" />
+            <Setter Property="Control.Margin" Value="3" />
+            <Setter Property="Control.BorderThickness" Value="1" />
+            <Setter Property="Control.BorderBrush" Value="#888a90"/>
+            <Setter Property="Control.Background" Value="#242424" />
+            <Setter Property="Control.Foreground" Value="#d8d6d6" />
             <Style.Triggers>
                 <Trigger Property="Control.IsMouseOver" Value="True">
-                    <Setter Property="Control.Background" Value="{x:Null}" />
-                    <Setter Property="Control.BorderBrush" Value="{x:Null}" />
-                    <Setter Property="Control.FontWeight" Value="Bold" />
+                    <!-- btn hovered -->
                 </Trigger>
                 <Trigger Property="Control.IsFocused" Value="True">
-                    <Setter Property="Control.FontWeight" Value="Bold" />
+                    <!-- btn selected -->
                 </Trigger>
                 <Trigger Property="Control.IsEnabled" Value="False">
-                    <Setter Property="Control.Foreground" Value="Gray" />
+                    <!-- btn disabled -->
+                    <Setter Property="Control.Opacity" Value="0.3" />
                 </Trigger>
                 <Trigger Property="Control.IsEnabled" Value="True">
-                    <Setter Property="Control.Foreground" Value="White" />
+                    <!-- btn enabled -->
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -38,14 +40,30 @@
             <Setter Property="Height" Value="25"/>
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="8,5,5,5" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="ToolTip" Value="Cliquez pour Trier"/>
+                    <Setter Property="TextElement.Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style TargetType="{x:Type DataGridRow}">
             <Setter Property="Foreground" Value="#FFB3B3B3"/>
-            <Setter Property="Height" Value="25"/>
+            <Setter Property="Height" Value="20"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="Background" Value="#FF383838"/>
+            <Setter Property="BorderThickness" Value="0,1,0,0"/>
+            <Setter Property="BorderBrush" Value="#888a90"/>
+            <Style.Triggers>
+                <Trigger Property="AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#383838"/>
+                </Trigger>
+                <Trigger Property="AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#464646"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
 
@@ -57,7 +75,7 @@
             <RowDefinition Height="28"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Background="#FF383838" RowHeaderWidth="0" Grid.Row="0" SelectedItem="{ Binding ViewModel.CurrentPicture }" ItemsSource="{ Binding ViewModel.Pictures }" AutoGenerateColumns="False" AllowDrop="True" Drop="OnDrop">
+        <DataGrid AlternationCount="2"  BorderThickness="0" Background="#FF383838" RowHeaderWidth="0" Grid.Row="0" SelectedItem="{ Binding ViewModel.CurrentPicture }" ItemsSource="{ Binding ViewModel.Pictures }" AutoGenerateColumns="False" AllowDrop="True" Drop="OnDrop">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" Width="*" />
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" Width="*" />
@@ -69,20 +87,36 @@
             </i:Interaction.Triggers>
         </DataGrid>
 
-        <TextBox Grid.Row="2" CaretBrush="White" Foreground="White" FontWeight="Bold" Background="Transparent" Text="{ Binding ViewModel.LinkInput, UpdateSourceTrigger=PropertyChanged }" />
-        <TextBox Grid.Row="3" CaretBrush="White" Foreground="White" FontWeight="Bold" Background="Transparent" Text="{ Binding ViewModel.SearchByText, UpdateSourceTrigger=PropertyChanged }" />
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Label"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Style="{StaticResource Flat}" TextElement.FontSize="10" Control.Margin="2">Url image:</Label>
+            <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.LinkInput, UpdateSourceTrigger=PropertyChanged }" />
+            <Button Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.AddLink }" CommandParameter="{ Binding ViewModel.LinkInput }" Content="Ajouter" Background="#1e5389" />
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Label"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Style="{StaticResource Flat}" TextElement.FontSize="10" Control.Margin="2">Search:</Label>
+            <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.SearchByText, UpdateSourceTrigger=PropertyChanged }" />
+        </Grid>
 
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.AddLink }" CommandParameter="{ Binding ViewModel.LinkInput }" FontWeight="Bold" Content="Ajouter le lien" Background="SteelBlue" />
-            <Button Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.AddFile }" FontWeight="Bold" Content="Ajouter un fichier" Background="SteelBlue" />
-            <Button Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPicture }" FontWeight="Bold" Content="Supprimer" Background="DarkRed"  />
+            <Button Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.AddFile }" Content="Ajouter une image depuis votre ordinateur" Background="#1e8941" />
+            <Button Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPicture }" Content="Retirer l'image sélectionnée" Background="#891e1e" />
         </Grid>
+
     </Grid>
 
 </UserControl>

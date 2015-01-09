@@ -45,7 +45,7 @@ namespace MyWindowsMediaPlayer.ViewModel
                 _SearchInput = value;
                 Videos.Clear();
 
-                var medias = from media in VideosTmp where media.Name.Contains(value) select media;
+                var medias = from media in VideosTmp where (media.Name.ToLower().Contains(value.ToLower())) select media;
 
                 foreach (var media in medias)
                 {

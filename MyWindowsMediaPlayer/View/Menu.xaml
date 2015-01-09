@@ -7,7 +7,7 @@
       d:DesignHeight="300" d:DesignWidth="300">
 
     <DockPanel>
-        <ListBox BorderThickness="0" Background="LightSteelBlue" DockPanel.Dock="Top" ItemsSource="{ Binding Pages }" SelectedItem="{ Binding CurrentPage }">
+        <ListBox BorderThickness="0,0,0,1" Background="#212121" DockPanel.Dock="Top" ItemsSource="{ Binding Pages }" SelectedItem="{ Binding CurrentPage }">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Resources>
@@ -18,13 +18,19 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Padding="5" Foreground="White" FontWeight="Bold" Margin="20,0,20,0" Text="{ Binding Name }">
+                    <TextBlock Padding="3" Foreground="#f1f1f1" FontWeight="Light" Text="{ Binding Name }">
                         <TextBlock.Style>
                             <Style>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={ RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem }}}" Value="True">
-                                        <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                                        <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.ForceCursor" Value="True"/>
                                     </DataTrigger>
+                                    <Trigger Property="Border.IsMouseOver" Value="True">
+                                        <Setter Property="TextElement.Cursor" Value="Hand"/>
+                                    </Trigger>
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
@@ -34,7 +40,7 @@
 
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" FlowDirection="LeftToRight" />
+                    <WrapPanel Orientation="Horizontal" Margin="4" FlowDirection="LeftToRight" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
