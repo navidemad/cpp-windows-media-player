@@ -10,7 +10,9 @@ namespace MyWindowsMediaPlayer.Command
     {
         public override bool CanExecute(object param)
         {
-            return true;
+            String link = param as String;
+
+            return link != null && link.Length > 0;
         }
 
         public override void Execute(object param)

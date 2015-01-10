@@ -13,20 +13,17 @@
             <Setter Property="Control.BorderThickness" Value="1" />
             <Setter Property="Control.BorderBrush" Value="#888a90"/>
             <Setter Property="Control.Background" Value="#242424" />
-            <Setter Property="Control.Foreground" Value="#d8d6d6" />
+            <Setter Property="Control.Foreground" Value="#e9e9e9" />
             <Style.Triggers>
                 <Trigger Property="Control.IsMouseOver" Value="True">
-                    <!-- btn hovered -->
                 </Trigger>
                 <Trigger Property="Control.IsFocused" Value="True">
-                    <!-- btn selected -->
+                    <Setter Property="Control.Background" Value="#181717"/>
                 </Trigger>
                 <Trigger Property="Control.IsEnabled" Value="False">
-                    <!-- btn disabled -->
                     <Setter Property="Control.Opacity" Value="0.3" />
                 </Trigger>
                 <Trigger Property="Control.IsEnabled" Value="True">
-                    <!-- btn enabled -->
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -44,6 +41,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#253e46" />
                     <Setter Property="ToolTip" Value="Cliquez pour Trier"/>
                     <Setter Property="TextElement.Cursor" Value="Hand"/>
                 </Trigger>
@@ -70,7 +68,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="5"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
@@ -91,7 +88,7 @@
             </i:Interaction.Triggers>
         </DataGrid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Label"/>
                 <ColumnDefinition Width="*"/>
@@ -99,10 +96,10 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Style="{StaticResource Flat}" TextElement.FontSize="10" Control.Margin="2">Url musique:</Label>
             <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.LinkInput, UpdateSourceTrigger=PropertyChanged }" />
-            <Button Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.AddLink }" CommandParameter="{ Binding ViewModel.LinkInput }" Content="Ajouter" Background="#1e5389" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.AddLink }" CommandParameter="{ Binding ViewModel.LinkInput }" Content="Ajouter" Background="#1e5389" />
         </Grid>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Label"/>
                 <ColumnDefinition Width="*"/>
@@ -111,13 +108,13 @@
             <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.SearchByText, UpdateSourceTrigger=PropertyChanged }" />
         </Grid>
 
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.AddFile }" Content="Ajouter une musique depuis votre ordinateur" Background="#1e8941" />
-            <Button Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentMusic }" Content="Retirer la musique sélectionnée" Background="#891e1e" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.AddFile }" Content="Ajouter une musique depuis votre ordinateur" Background="#1e8941" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentMusic }" Content="Retirer la musique sélectionnée" Background="#891e1e" />
         </Grid>
         
     </Grid>

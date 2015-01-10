@@ -32,6 +32,8 @@ namespace MyWindowsMediaPlayer.ViewModel
             set
             {
                 _NamePlaylist = value;
+                RaisePropertyChanged("NamePlaylist");
+                Add.RaiseCanExecuteChanged();
             }
         }
 
@@ -42,7 +44,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             set
             {
                 _SearchInput = value;
-                Playlists.Clear();
+                //Playlists.Clear();
 
                 /*var medias = from media in PlaylistsTmp where media.Name.Contains(value) select media;
 

@@ -24,13 +24,21 @@ namespace MyWindowsMediaPlayer.View
         {
             public ViewModel.PlayListViewModel ViewModel { get; set; }
             public ViewModel.MediaViewModel MediaViewModel { get; set; }
+            public System.Windows.Media.ImageSource AddIcon { get; set; }
+            public System.Windows.Media.ImageSource DeleteIcon { get; set; }
+            public System.Windows.Media.ImageSource DownIcon { get; set; }
+            public System.Windows.Media.ImageSource UpIcon { get; set; }
+            public System.Windows.Media.ImageSource UpdateIcon { get; set; }
         }
 
         public Playlists()
         {
             InitializeComponent();
 
-            DataContext = new ViewDataContext { ViewModel = ViewModel.PlayListViewModel.getInstance(), MediaViewModel = ViewModel.MediaViewModel.getInstance() };
+            DataContext = new ViewDataContext
+            { 
+                ViewModel = ViewModel.PlayListViewModel.getInstance(), MediaViewModel = ViewModel.MediaViewModel.getInstance(),
+            };
         }
     }
 }

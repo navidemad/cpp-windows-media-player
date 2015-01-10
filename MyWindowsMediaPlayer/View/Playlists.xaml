@@ -13,20 +13,17 @@
             <Setter Property="Control.BorderThickness" Value="1" />
             <Setter Property="Control.BorderBrush" Value="#888a90"/>
             <Setter Property="Control.Background" Value="#242424" />
-            <Setter Property="Control.Foreground" Value="#d8d6d6" />
+            <Setter Property="Control.Foreground" Value="#e9e9e9" />
             <Style.Triggers>
                 <Trigger Property="Control.IsMouseOver" Value="True">
-                    <!-- btn hovered -->
                 </Trigger>
                 <Trigger Property="Control.IsFocused" Value="True">
-                    <!-- btn selected -->
+                    <Setter Property="Control.Background" Value="#181717"/>
                 </Trigger>
                 <Trigger Property="Control.IsEnabled" Value="False">
-                    <!-- btn disabled -->
                     <Setter Property="Control.Opacity" Value="0.3" />
                 </Trigger>
                 <Trigger Property="Control.IsEnabled" Value="True">
-                    <!-- btn enabled -->
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -44,6 +41,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#253e46" />
                     <Setter Property="ToolTip" Value="Cliquez pour Trier"/>
                     <Setter Property="TextElement.Cursor" Value="Hand"/>
                 </Trigger>
@@ -63,6 +61,11 @@
                 <Trigger Property="AlternationIndex" Value="1">
                     <Setter Property="Background" Value="#464646"/>
                 </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#253e46" />
+                    <Setter Property="ToolTip" Value="Cliquez pour Trier"/>
+                    <Setter Property="TextElement.Cursor" Value="Hand"/>
+                </Trigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
@@ -72,36 +75,38 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
         </Grid.RowDefinitions>
-
-        <DataGrid AlternationCount="2" BorderThickness="0" Background="#FF383838" RowHeaderWidth="0" Grid.Row="0" SelectedItem="{ Binding ViewModel.CurrentPlaylist }" ItemsSource="{ Binding ViewModel.Playlists }" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" Width="*" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" Width="*" />
-            </DataGrid.Columns>
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseDoubleClick">
-                    <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectPlaylistCommand }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </DataGrid>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Label"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Style="{StaticResource Flat}" TextElement.FontSize="10" Control.Margin="2">Nom de la playlist:</Label>
             <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.NamePlaylist, UpdateSourceTrigger=PropertyChanged }" />
-            <Button Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.Add }" Content="Créer" Background="#1e5389" />
-            <Button Style="{StaticResource Flat}" Grid.Column="3" Command="{ Binding ViewModel.Edit }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Mettre à jour" Background="#1e8941" />
-            <Button Style="{StaticResource Flat}" Grid.Column="4" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Retirer" Background="#891e1e" />
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.Add }" CommandParameter="{ Binding ViewModel.NamePlaylist }" Content="Créer la playlist" Background="#1e8941" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.Edit }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Changer le nom" Background="#1e8941" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Supprimer la playlist" Background="#891e1e" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="3" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Ajouter un élément" Background="#1e8941" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="4" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Supprimer l'élément" Background="#891e1e" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="5" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Monter" Background="#1e6a89" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="6" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Descendre" Background="#1e6a89" />
         </Grid>
         
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Label"/>
                 <ColumnDefinition Width="*"/>
