@@ -17,7 +17,7 @@ namespace MyWindowsMediaPlayer.Command
 
         public override bool CanExecute(object param)
         {
-            return true;
+            return (param as Model.Playlist) != null;
         }
 
         public override void Execute(object param)
@@ -30,7 +30,8 @@ namespace MyWindowsMediaPlayer.Command
             openFileDialog.FilterIndex = 1;
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                switch(System.IO.Path.GetExtension(openFileDialog.FileName))
+                String ext = System.IO.Path.GetExtension(openFileDialog.FileName);
+                switch(ext)
                 {
                     case ".mp4":
                     case ".wmv":
@@ -45,8 +46,8 @@ namespace MyWindowsMediaPlayer.Command
                         AddItem(new Model.Music(openFileDialog.FileName, false));
                         break;
                     default:
-                         Console.WriteLine("undefined");
-                         break;
+                        Console.WriteLine("Program cannot handle the extension: '{0}'", ext);
+                        break;
                 }
             }
         }

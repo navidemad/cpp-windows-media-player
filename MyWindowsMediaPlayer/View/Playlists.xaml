@@ -39,6 +39,19 @@
             <Setter Property="TextElement.FontSize" Value="25" />
         </Style>
 
+        <Style x:Key="Body_Content_DataGrid_Centering"
+        TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <SolidColorBrush x:Key="GotFocusColor" Color="Green" />
         <SolidColorBrush x:Key="LostFocusColor" Color="Transparent" />
 
@@ -49,7 +62,6 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="Padding" Value="8,5,5,5" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#253e46" />
@@ -61,7 +73,7 @@
 
         <Style TargetType="{x:Type DataGridRow}">
             <Setter Property="Foreground" Value="#FFB3B3B3"/>
-            <Setter Property="Height" Value="20"/>
+            <Setter Property="Height" Value="30"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="BorderThickness" Value="0,1,0,0"/>
             <Setter Property="BorderBrush" Value="#888a90"/>
@@ -92,7 +104,7 @@
 
         <Label Grid.Row="0" Width="Auto" Style="{StaticResource Label}" TextElement.FontSize="10" Control.Margin="2" Content="Liste des playlists:" />
 
-        <DataGrid Grid.Row="1" AlternationCount="2" SelectionMode="Single" CanUserAddRows="False" HorizontalAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" Background="#FF383838" RowHeaderWidth="0" SelectedItem="{ Binding ViewModel.CurrentPlaylist }" ItemsSource="{ Binding ViewModel.Playlists, IsAsync=True }" HeadersVisibility="None" AutoGenerateColumns="false">
+        <DataGrid CellStyle="{StaticResource Body_Content_DataGrid_Centering}" Grid.Row="1" AlternationCount="2" SelectionMode="Single" CanUserAddRows="False" HorizontalAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" Background="#FF383838" RowHeaderWidth="0" SelectedItem="{ Binding ViewModel.CurrentPlaylist }" ItemsSource="{ Binding ViewModel.Playlists, IsAsync=True }" HeadersVisibility="None" AutoGenerateColumns="false">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="False" Binding="{ Binding Name }" Header="Nom de la playlist" Width="*" />
             </DataGrid.Columns>
@@ -121,15 +133,20 @@
             <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Supprimer" Background="#891e1e" />
         </Grid>
 
-        <DataGrid Grid.Row="4" AlternationCount="2" SelectionMode="Single" CanUserAddRows="False" BorderThickness="0" Background="#FF383838" RowHeaderWidth="0" ItemsSource="{ Binding ViewModel.CurrentPlaylist.Medias }" AutoGenerateColumns="false">
+        <DataGrid CellStyle="{StaticResource Body_Content_DataGrid_Centering}" Grid.Row="4" x:Name="mediasList" AlternationCount="2" SelectionMode="Single" BorderThickness="0" Background="#FF383838" RowHeaderWidth="0" AutoGenerateColumns="false" CanUserAddRows="True" CanUserDeleteRows="True" SelectedItem="{Binding ViewModel.CurrentMedia, Mode=TwoWay}" ItemsSource="{ Binding ViewModel.CurrentPlaylist.Medias, IsAsync=True }" >
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Type }" Header="Type" Width="53" />
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" Width="100" />
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" Width="*" />
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Path }" Header="Path" Width="*" />
             </DataGrid.Columns>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{ Binding MediaViewModel.SelectMediaCommand }" CommandParameter="{ Binding ViewModel.CurrentMedia }" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </DataGrid>
-        
+
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
@@ -137,10 +154,10 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.AddItem }" Content="Ajouter" Background="#1e6a89" />
-            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.DeleteItem }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Supprimer" Background="#891e1e" />
-            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.UpItem }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Monter" Background="#673ba2" />
-            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="3" Command="{ Binding ViewModel.DownItem }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Descendre" Background="#673ba2" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.AddItem }" CommandParameter="{ Binding ViewModel.CurrentPlaylist }" Content="Ajouter" Background="#1e6a89" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.DeleteItem }" CommandParameter="{ Binding ViewModel.CurrentMedia }" Content="Supprimer" Background="#891e1e" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.UpItem }" CommandParameter="{ Binding ViewModel.CurrentMedia }" Content="Monter" Background="#673ba2" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="3" Command="{ Binding ViewModel.DownItem }" CommandParameter="{ Binding ViewModel.CurrentMedia }" Content="Descendre" Background="#673ba2" />
         </Grid>
         
     </Grid>

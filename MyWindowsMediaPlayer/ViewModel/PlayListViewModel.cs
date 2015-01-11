@@ -37,6 +37,20 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
+        private Model.Media _CurrentMedia = null;
+        public Model.Media CurrentMedia
+        {
+            get { return _CurrentMedia; }
+            set
+            {
+                _CurrentMedia = value;
+                RaisePropertyChanged("CurrentMedia");
+                DeleteItem.RaiseCanExecuteChanged();
+                UpItem.RaiseCanExecuteChanged();
+                DownItem.RaiseCanExecuteChanged();
+            }
+        }
+
         static private PlayListViewModel _Instance = null;
         static public PlayListViewModel getInstance()
         {
@@ -55,57 +69,106 @@ namespace MyWindowsMediaPlayer.ViewModel
             UpItem = new Command.UpPlaylistItemCommand(UpPlaylistItem);
             DownItem = new Command.DownPlaylistItemCommand(DownPlaylistItem);
 
-            // static data in order to test display and features
-            Playlists = new System.Collections.ObjectModel.ObservableCollection<Model.Playlist>();
-           
-            Playlists.Add(new Model.Playlist() {
-                    Name = "Static Playlist 1",
-                    Medias = new System.Collections.ObjectModel.ObservableCollection<Model.Media> {
-                        new Model.Music("Path1", false),
-                        new Model.Picture("Path2", false),
-                        new Model.Video("Path3", false)
-                    }
-                });
+            LoadData();
+        }
 
-            Playlists.Add(new Model.Playlist() {
-                    Name = "Static Playlist 2",
-                    Medias = new System.Collections.ObjectModel.ObservableCollection<Model.Media> {
-                        new Model.Music("Path4", false),
-                        new Model.Picture("Path5", false),
-                        new Model.Video("Path6", false)
-                    }
-                });
+        public void LoadData()
+        {
+            XML.PlaylistXML playlistXML = new XML.PlaylistXML();
+            playlistXML.Load("playlists.xml");
+            Playlists = playlistXML.GetPlaylists();
         }
 
         public void AddPlaylist(Model.Playlist newPlaylist)
         {
             if (Playlists.Any(cus => cus.Name == newPlaylist.Name) == false)
-                Playlists.Add(newPlaylist);
+            {
+                XML.PlaylistXML playlistXML = new XML.PlaylistXML();
+
+                playlistXML.Load("playlists.xml");
+                if (!playlistXML.HasPlaylist(newPlaylist.Name))
+                {
+                    playlistXML.AddPlaylist(newPlaylist.Name);
+                    playlistXML.WriteInFile("playlists.xml");
+                    Playlists.Add(newPlaylist);
+                }
+            }
         }
 
         public void RemovePlaylist(Model.Playlist selectedPlaylist)
         {
             if (Playlists.Any(cus => cus.Name == selectedPlaylist.Name) == true)
-                Playlists.Remove(selectedPlaylist);
+            {
+                XML.PlaylistXML playlistXML = new XML.PlaylistXML();
+
+                playlistXML.Load("playlists.xml");
+                if (playlistXML.HasPlaylist(selectedPlaylist.Name))
+                {
+                    playlistXML.RemovePlaylist(selectedPlaylist.Name);
+                    playlistXML.WriteInFile("playlists.xml");
+                    Playlists.Remove(selectedPlaylist);
+                }
+            }
         }
 
-        public void AddPlaylistItem(Model.Media playlist)
+        public void AddPlaylistItem(Model.Media media)
         {
-            Console.WriteLine("public void AddPlaylistItem(Model.Playlist playlist)");
+            if (CurrentPlaylist != null && media != null)
+            {
+                XML.PlaylistXML playlistXML = new XML.PlaylistXML();
+
+                playlistXML.Load("playlists.xml");
+                if (!playlistXML.HasMedia(CurrentPlaylist.Name, media))
+                {
+                    playlistXML.AddPlaylistItem(CurrentPlaylist.Name, media);
+                    playlistXML.WriteInFile("playlists.xml");
+                    CurrentPlaylist.Medias.Add(media);
+                }                
+            }
         }
 
-        public void DeletePlaylistItem(Model.Playlist playlist)
+        public void DeletePlaylistItem(Model.Media media)
         {
-            Console.WriteLine("public void DeletePlaylistItem(Model.Playlist playlist)");
+            if (CurrentPlaylist != null && media != null)
+            {
+                XML.PlaylistXML playlistXML = new XML.PlaylistXML();
+
+                playlistXML.Load("playlists.xml");
+                if (playlistXML.HasMedia(CurrentPlaylist.Name, media))
+                {
+                    playlistXML.RemovePlaylistItem(CurrentPlaylist.Name, media);
+                    playlistXML.WriteInFile("playlists.xml");
+                    CurrentPlaylist.Medias.Remove(media);
+                }
+            }
         }
 
-        public void UpPlaylistItem(Model.Media playlist)
+        public void UpPlaylistItem(Model.Media media)
         {
-            Console.WriteLine("public void UpPlaylistItem(Model.Playlist playlist)");
+            if (CurrentPlaylist != null && media != null)
+            {
+                int index = CurrentPlaylist.Medias.IndexOf(media);
+                if (index > 0 && index != -1)
+                {
+                    var swap = CurrentPlaylist.Medias[index - 1];
+                    CurrentPlaylist.Medias.RemoveAt(index - 1);
+                    CurrentPlaylist.Medias.Insert(index, swap);
+                }
+            }
         }
-        public void DownPlaylistItem(Model.Media playlist)
+
+        public void DownPlaylistItem(Model.Media media)
         {
-            Console.WriteLine("public void DownPlaylistItem(Model.Playlist playlist)");
+            if (CurrentPlaylist != null && media != null)
+            {
+                int index = CurrentPlaylist.Medias.IndexOf(media);
+                if (index < CurrentPlaylist.Medias.Count - 1 && index != -1)
+                {
+                    var swap = CurrentPlaylist.Medias[index + 1];
+                    CurrentPlaylist.Medias.RemoveAt(index + 1);
+                    CurrentPlaylist.Medias.Insert(index, swap);
+                }
+            }
         }
 
         public Model.Playlist Next()

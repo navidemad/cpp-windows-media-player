@@ -91,6 +91,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             if (media == null || (media.Stream == false && System.IO.File.Exists(media.Path) == false))
                 return;
 
+            Console.WriteLine("playMedia");
             switch (media.Type)
             {
                 case Model.Media.MediaType.MUSIC:

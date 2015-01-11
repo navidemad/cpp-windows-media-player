@@ -23,6 +23,7 @@ namespace MyWindowsMediaPlayer.Command
         {
             if (!CanExecute(param))
                 return;
+            DownItem(param as Model.Media);
         }
     }
 }
