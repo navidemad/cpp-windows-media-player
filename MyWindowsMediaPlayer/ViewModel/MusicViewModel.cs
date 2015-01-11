@@ -45,12 +45,11 @@ namespace MyWindowsMediaPlayer.ViewModel
                 _SearchInput = value;
                 Musics.Clear();
 
-                var medias = from media in MusicsTmp where (media.Name.ToLower().Contains(value.ToLower()) || media.Artists.ToLower().Contains(value.ToLower()) || media.Album.ToLower().Contains(value.ToLower())) select media;
+                var regex = new System.Text.RegularExpressions.Regex(value.ToLower());
+                var medias = from media in MusicsTmp where (regex.IsMatch(media.Name.ToLower()) || regex.IsMatch(media.Artists.ToLower()) || regex.IsMatch(media.Album.ToLower())) select media;
 
                 foreach (var media in medias)
-                {
                     Musics.Add(new Model.Music(media.Path, media.Stream));
-                }
             }
         }
 
