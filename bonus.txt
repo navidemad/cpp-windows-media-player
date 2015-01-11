@@ -5,3 +5,4 @@ Stream
 UI avancée (volume, slider, ...)
 fullscreen
 recherche par regex
+langue
