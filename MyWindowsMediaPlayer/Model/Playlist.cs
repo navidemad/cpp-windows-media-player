@@ -20,6 +20,7 @@ namespace MyWindowsMediaPlayer.Model
         public Playlist()
         {
             Name = "";
+            Medias = new System.Collections.ObjectModel.ObservableCollection<Model.Media>();
             CurrentIndex = 0;
         }
     }

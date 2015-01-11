@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace MyWindowsMediaPlayer.Command
 {
-    class AddPlaylistCommand : Command
+    class DeletePlaylistItemCommand : Command
     {
-        Action<Model.Playlist> Add;
-
-        public AddPlaylistCommand(Action<Model.Playlist> add)
+        Action<Model.Playlist> DeleteItem;
+        public DeletePlaylistItemCommand(Action<Model.Playlist> deleteItem)
         {
-            Add = add;
+            DeleteItem = deleteItem;
         }
 
         public override bool CanExecute(object param)
         {
-            return !string.IsNullOrEmpty(param as String);
+            Console.WriteLine("DeletePlaylistItem canExecute: {0}", param);
+            return (param as Model.Playlist) != null;
         }
 
         public override void Execute(object param)
         {
             if (!CanExecute(param))
                 return;
-            Add(new Model.Playlist() { Name = param as String });
+            DeleteItem(param as Model.Playlist);
         }
     }
 }

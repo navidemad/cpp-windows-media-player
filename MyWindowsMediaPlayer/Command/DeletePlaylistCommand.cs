@@ -8,6 +8,13 @@ namespace MyWindowsMediaPlayer.Command
 {
     class DeletePlaylistCommand : Command
     {
+        Action<Model.Playlist> Delete;
+
+        public DeletePlaylistCommand(Action<Model.Playlist> delete)
+        {
+            Delete = delete;
+        }
+
         public override bool CanExecute(object param)
         {
             return (param as Model.Playlist) != null;
@@ -17,6 +24,8 @@ namespace MyWindowsMediaPlayer.Command
         {
             if (!CanExecute(param))
                 return;
+
+            Delete(param as Model.Playlist);
         }
     }
 }

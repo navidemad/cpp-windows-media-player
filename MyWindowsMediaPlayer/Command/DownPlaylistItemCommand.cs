@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace MyWindowsMediaPlayer.Command
 {
-    class EditPlaylistCommand : Command
+    class DownPlaylistItemCommand : Command
     {
+        Action<Model.Media> DownItem;
+        public DownPlaylistItemCommand(Action<Model.Media> downItem)
+        {
+            DownItem = downItem;
+        }
+
         public override bool CanExecute(object param)
         {
-            return (param as Model.Playlist) != null;
+            return (param as Model.Media) != null;
         }
 
         public override void Execute(object param)

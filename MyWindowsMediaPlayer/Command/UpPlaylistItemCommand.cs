@@ -6,25 +6,23 @@ using System.Threading.Tasks;
 
 namespace MyWindowsMediaPlayer.Command
 {
-    class AddPlaylistCommand : Command
+    class UpPlaylistItemCommand : Command
     {
-        Action<Model.Playlist> Add;
-
-        public AddPlaylistCommand(Action<Model.Playlist> add)
+        Action<Model.Media> UpItem;
+        public UpPlaylistItemCommand(Action<Model.Media> upItem)
         {
-            Add = add;
+            UpItem = upItem;
         }
 
         public override bool CanExecute(object param)
         {
-            return !string.IsNullOrEmpty(param as String);
+            return (param as Model.Media) != null;
         }
 
         public override void Execute(object param)
         {
             if (!CanExecute(param))
                 return;
-            Add(new Model.Playlist() { Name = param as String });
         }
     }
 }

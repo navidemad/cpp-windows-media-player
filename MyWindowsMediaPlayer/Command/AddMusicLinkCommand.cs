@@ -18,8 +18,7 @@ namespace MyWindowsMediaPlayer.Command
         public override bool CanExecute(object param)
         {
             String link = param as String;
-
-            return link != null && link.Length > 0 && link.IndexOf("https") != 0;
+            return !string.IsNullOrEmpty(link) && link.IndexOf("https") != 0;
         }
 
         public override void Execute(object param)

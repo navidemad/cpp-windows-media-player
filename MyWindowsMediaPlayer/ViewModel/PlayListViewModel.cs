@@ -10,7 +10,6 @@ namespace MyWindowsMediaPlayer.ViewModel
     {
         private int _CurrentIndex = 0;
         public System.Collections.ObjectModel.ObservableCollection<Model.Playlist> Playlists { get; set; }
-        public System.Collections.ObjectModel.ObservableCollection<Model.Playlist> PlaylistsTmp { get; set; }
 
         private Model.Playlist _CurrentPlaylist = null;
         public Model.Playlist CurrentPlaylist
@@ -19,9 +18,10 @@ namespace MyWindowsMediaPlayer.ViewModel
             set
             {
                 _CurrentPlaylist = value;
+                NamePlaylist = _CurrentPlaylist != null ? _CurrentPlaylist.Name : "";
                 RaisePropertyChanged("CurrentPlaylist");
                 Delete.RaiseCanExecuteChanged();
-                Edit.RaiseCanExecuteChanged();
+                AddItem.RaiseCanExecuteChanged();
             }
         }
 
@@ -37,24 +37,6 @@ namespace MyWindowsMediaPlayer.ViewModel
             }
         }
 
-        private String _SearchInput = "";
-        public String SearchByText
-        {
-            get { return _SearchInput; }
-            set
-            {
-                _SearchInput = value;
-                //Playlists.Clear();
-
-                /*var medias = from media in PlaylistsTmp where media.Name.Contains(value) select media;
-
-                foreach (var media in medias)
-                {
-                    Playlists.Add(new Model.Playlist(media.Path, media.Stream));
-                }*/
-            }
-        }
-
         static private PlayListViewModel _Instance = null;
         static public PlayListViewModel getInstance()
         {
@@ -66,42 +48,64 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         private PlayListViewModel()
         {
-            Add = new Command.AddPlaylistCommand();
-            Edit = new Command.EditPlaylistCommand();
-            Delete = new Command.DeletePlaylistCommand();
+            Add = new Command.AddPlaylistCommand(AddPlaylist);
+            Delete = new Command.DeletePlaylistCommand(RemovePlaylist);
+            AddItem = new Command.AddPlaylistItemCommand(AddPlaylistItem);
+            DeleteItem = new Command.DeletePlaylistItemCommand(DeletePlaylistItem);
+            UpItem = new Command.UpPlaylistItemCommand(UpPlaylistItem);
+            DownItem = new Command.DownPlaylistItemCommand(DownPlaylistItem);
 
             // static data in order to test display and features
-            /*
-            Playlists = new System.Collections.ObjectModel.ObservableCollection<Model.Playlist> {
-                new Model.Playlist {
-                    Name = "Playlist 1",
+            Playlists = new System.Collections.ObjectModel.ObservableCollection<Model.Playlist>();
+           
+            Playlists.Add(new Model.Playlist() {
+                    Name = "Static Playlist 1",
                     Medias = new System.Collections.ObjectModel.ObservableCollection<Model.Media> {
-                        new Model.Music { Path = "Path1", Name = "Music" },
-                        new Model.Picture { Path = "Path2", Name = "Picture" },
-                        new Model.Video { Path = "Path3", Name = "Video" }
+                        new Model.Music("Path1", false),
+                        new Model.Picture("Path2", false),
+                        new Model.Video("Path3", false)
                     }
-                },
+                });
 
-                new Model.Playlist {
-                    Name = "Playlist 2",
+            Playlists.Add(new Model.Playlist() {
+                    Name = "Static Playlist 2",
                     Medias = new System.Collections.ObjectModel.ObservableCollection<Model.Media> {
-                        new Model.Music { Path = "Path1", Name = "Music" },
-                        new Model.Picture { Path = "Path2", Name = "Picture" },
-                        new Model.Video { Path = "Path3", Name = "Video" }
+                        new Model.Music("Path4", false),
+                        new Model.Picture("Path5", false),
+                        new Model.Video("Path6", false)
                     }
-                }
-            };
-            */
+                });
         }
 
-        public void RemovePlaylist(Model.Playlist playlist)
+        public void AddPlaylist(Model.Playlist newPlaylist)
         {
-            Playlists.Remove(playlist);
+            if (Playlists.Any(cus => cus.Name == newPlaylist.Name) == false)
+                Playlists.Add(newPlaylist);
         }
 
-        public void AddPlaylist(Model.Playlist playlist)
+        public void RemovePlaylist(Model.Playlist selectedPlaylist)
         {
-            Playlists.Add(playlist);
+            if (Playlists.Any(cus => cus.Name == selectedPlaylist.Name) == true)
+                Playlists.Remove(selectedPlaylist);
+        }
+
+        public void AddPlaylistItem(Model.Media playlist)
+        {
+            Console.WriteLine("public void AddPlaylistItem(Model.Playlist playlist)");
+        }
+
+        public void DeletePlaylistItem(Model.Playlist playlist)
+        {
+            Console.WriteLine("public void DeletePlaylistItem(Model.Playlist playlist)");
+        }
+
+        public void UpPlaylistItem(Model.Media playlist)
+        {
+            Console.WriteLine("public void UpPlaylistItem(Model.Playlist playlist)");
+        }
+        public void DownPlaylistItem(Model.Media playlist)
+        {
+            Console.WriteLine("public void DownPlaylistItem(Model.Playlist playlist)");
         }
 
         public Model.Playlist Next()
@@ -129,8 +133,12 @@ namespace MyWindowsMediaPlayer.ViewModel
         }
 
         // COMMANDS
-        public Command.DeletePlaylistCommand Delete { get; set; }
-        public Command.EditPlaylistCommand Edit { get; set; }
         public Command.AddPlaylistCommand Add { get; set; }
+        public Command.DeletePlaylistCommand Delete { get; set; }
+        public Command.DeletePlaylistItemCommand DeleteItem { get; set; }
+        public Command.AddPlaylistItemCommand AddItem { get; set; }
+        public Command.UpPlaylistItemCommand UpItem { get; set; }
+        public Command.DownPlaylistItemCommand DownItem { get; set; }
+
     }
 }

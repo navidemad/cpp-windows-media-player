@@ -73,7 +73,7 @@
             <RowDefinition Height="28"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DataGrid AlternationCount="2" BorderThickness="0" Background="#FF383838" RowHeaderWidth="0" Grid.Row="0" SelectedItem="{ Binding ViewModel.CurrentMusic }" ItemsSource="{ Binding ViewModel.Musics }" AutoGenerateColumns="False" AllowDrop="True" Drop="OnDrop">
+        <DataGrid AlternationCount="2" SelectionMode="Single" CanUserAddRows="False" BorderThickness="0" Background="#FF383838" RowHeaderWidth="0" Grid.Row="0" SelectedItem="{ Binding ViewModel.CurrentMusic }" ItemsSource="{ Binding ViewModel.Musics }" AutoGenerateColumns="False" AllowDrop="True" Drop="OnDrop">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" Width="*" />
                 <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Title }" Header="Titre" Width="*" />
@@ -95,7 +95,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Style="{StaticResource Flat}" TextElement.FontSize="10" Control.Margin="2">Url musique:</Label>
-            <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.LinkInput, UpdateSourceTrigger=PropertyChanged }" />
+            <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.LinkInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" />
             <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.AddLink }" CommandParameter="{ Binding ViewModel.LinkInput }" Content="Ajouter" Background="#1e5389" />
         </Grid>
 
@@ -105,7 +105,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Style="{StaticResource Flat}" TextElement.FontSize="10" Control.Margin="2">Search:</Label>
-            <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.SearchByText, UpdateSourceTrigger=PropertyChanged }" />
+            <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.SearchByText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" />
         </Grid>
 
         <Grid Grid.Row="3">

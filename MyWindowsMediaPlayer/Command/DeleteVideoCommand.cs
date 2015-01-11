@@ -24,7 +24,6 @@ namespace MyWindowsMediaPlayer.Command
         {
             if (!CanExecute(param))
                 return;
-
             Delete(param as Model.Video);
         }
 
