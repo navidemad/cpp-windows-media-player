@@ -54,10 +54,10 @@ namespace MyWindowsMediaPlayer.View
             InitializeComponent();
 
             List<Link> pages = new List<Link> {
-                new Link { Name = "Playlists", Page = "Playlists.xaml" },
-                new Link { Name = "Images", Page = "Pictures.xaml" },
-                new Link { Name = "Musiques", Page = "Musics.xaml" },
-                new Link { Name = "Videos", Page = "Videos.xaml" }
+                new Link { Name = Properties.Resources.playlists, Page = "Playlists.xaml" },
+                new Link { Name = Properties.Resources.images, Page = "Pictures.xaml" },
+                new Link { Name = Properties.Resources.musics, Page = "Musics.xaml" },
+                new Link { Name = Properties.Resources.videos, Page = "Videos.xaml" }
             };
 
             DataContext = new ViewDataContext { CurrentPage = pages[0], Pages = pages };

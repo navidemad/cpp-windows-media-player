@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:p="clr-namespace:MyWindowsMediaPlayer.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="300">
 
@@ -71,8 +72,8 @@
         </Grid.RowDefinitions>
         <DataGrid Name="DatagridPlaylist" AlternationCount="2" BorderThickness="0" SelectionMode="Single" CanUserAddRows="False" Background="#FF383838" RowHeaderWidth="0" Grid.Row="0" SelectedItem="{ Binding ViewModel.CurrentVideo }" ItemsSource="{ Binding ViewModel.Videos }" AutoGenerateColumns="False" AllowDrop="True" Drop="OnDrop">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="Fichier" Width="*" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="Date" Width="*" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="{x:Static p:Resources.file}" Width="*" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding ModificationDate, StringFormat=HH:mm dd/MM/yyyy }" Header="{x:Static p:Resources.date}" Width="*" />
             </DataGrid.Columns>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
@@ -87,9 +88,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Style="{StaticResource Flat}" TextElement.FontSize="10" Control.Margin="2">Url vidéo:</Label>
+            <Label Grid.Column="0" Style="{StaticResource Flat}" TextElement.FontSize="10" Control.Margin="2" Content="{x:Static p:Resources.url_video}" />
             <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.LinkInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" />
-            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.AddLink }" CommandParameter="{ Binding ViewModel.LinkInput }" Content="Ajouter" Background="#1e5389" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="2" Command="{ Binding ViewModel.AddLink }" CommandParameter="{ Binding ViewModel.LinkInput }" Content="{x:Static p:Resources.add}" Background="#1e5389" />
         </Grid>
 
         <Grid Grid.Row="3">
@@ -97,7 +98,7 @@
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Label"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Style="{StaticResource Flat}" TextElement.FontSize="10" Control.Margin="2">Search:</Label>
+            <Label Grid.Column="0" Style="{StaticResource Flat}" TextElement.FontSize="10" Control.Margin="2" Content="{x:Static p:Resources.search}" />
             <TextBox Grid.Column="1" Style="{StaticResource Flat}" Text="{ Binding ViewModel.SearchByText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" />
         </Grid>
         
@@ -106,8 +107,8 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.AddFile }" Content="Ajouter une vidéo depuis votre ordinateur" Background="#1e8941" />
-            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentVideo }" Content="Retirer la vidéo sélectionnée" Background="#891e1e" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="0" Command="{ Binding ViewModel.AddFile }" Content="{x:Static p:Resources.add_video_from_computer}" Background="#1e8941" />
+            <Button Cursor="Hand" Style="{StaticResource Flat}" Grid.Column="1" Command="{ Binding ViewModel.Delete }" CommandParameter="{ Binding ViewModel.CurrentVideo }" Content="{x:Static p:Resources.remove_selected_video}" Background="#891e1e" />
         </Grid>
         
     </Grid>

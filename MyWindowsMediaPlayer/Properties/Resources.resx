@@ -117,5 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="add" xml:space="preserve">
+    <value>add</value>
+  </data>
+  <data name="add_image_from_computer" xml:space="preserve">
+    <value>add_image_from_computer</value>
+  </data>
+  <data name="add_music_from_computer" xml:space="preserve">
+    <value>add_music_from_computer</value>
+  </data>
+  <data name="add_video_from_computer" xml:space="preserve">
+    <value>add_video_from_computer</value>
+  </data>
+  <data name="album" xml:space="preserve">
+    <value>album</value>
+  </data>
+  <data name="artist" xml:space="preserve">
+    <value>artist</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>category</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>create</value>
+  </data>
+  <data name="current_media" xml:space="preserve">
+    <value>current_media</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>date</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>delete</value>
+  </data>
+  <data name="down" xml:space="preserve">
+    <value>down</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>english</value>
+  </data>
+  <data name="file" xml:space="preserve">
+    <value>file</value>
+  </data>
+  <data name="french" xml:space="preserve">
+    <value>french</value>
+  </data>
+  <data name="images" xml:space="preserve">
+    <value>images</value>
+  </data>
+  <data name="list_of_playlist" xml:space="preserve">
+    <value>list_of_playlist</value>
+  </data>
+  <data name="musics" xml:space="preserve">
+    <value>musics</value>
+  </data>
+  <data name="name_of_playlist" xml:space="preserve">
+    <value>name_of_playlist</value>
+  </data>
+  <data name="path" xml:space="preserve">
+    <value>path</value>
+  </data>
+  <data name="player" xml:space="preserve">
+    <value>player</value>
+  </data>
+  <data name="playlists" xml:space="preserve">
+    <value>playlist</value>
+  </data>
+  <data name="remove_selected_image" xml:space="preserve">
+    <value>remove_selected_image</value>
+  </data>
+  <data name="remove_selected_music" xml:space="preserve">
+    <value>remove_selected_music</value>
+  </data>
+  <data name="remove_selected_video" xml:space="preserve">
+    <value>remove_selected_video</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>search</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>title</value>
+  </data>
+  <data name="type" xml:space="preserve">
+    <value>type</value>
+  </data>
+  <data name="up" xml:space="preserve">
+    <value>up</value>
+  </data>
+  <data name="url_image" xml:space="preserve">
+    <value>url_image</value>
+  </data>
+  <data name="url_music" xml:space="preserve">
+    <value>url_music</value>
+  </data>
+  <data name="url_video" xml:space="preserve">
+    <value>url_video</value>
+  </data>
+  <data name="videos" xml:space="preserve">
+    <value>videos</value>
+  </data>
 </root>
