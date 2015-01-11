@@ -1,0 +1,7 @@
+GUI
+MVVM
+Drag & Drop
+Stream
+UI avancée (volume, slider, ...)
+fullscreen
+recherche par regex
