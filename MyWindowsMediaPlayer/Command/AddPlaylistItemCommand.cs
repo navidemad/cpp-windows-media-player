@@ -30,7 +30,7 @@ namespace MyWindowsMediaPlayer.Command
             openFileDialog.FilterIndex = 1;
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                String ext = System.IO.Path.GetExtension(openFileDialog.FileName);
+                String ext = System.IO.Path.GetExtension(openFileDialog.FileName).ToLower();
                 switch(ext)
                 {
                     case ".mp4":

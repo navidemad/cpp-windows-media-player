@@ -86,9 +86,23 @@ namespace MyWindowsMediaPlayer.XML
                              elem.Element("Stream") != null &&
                              elem.Element("Type") != null)
                         {
-                            Model.Media media = new Model.Media(elem.Element("Path").Value, Boolean.Parse(elem.Element("Stream").Value));
-                            media.Type = (Model.Media.MediaType)Enum.Parse(typeof(Model.Media.MediaType), elem.Element("Type").Value);
-                            medias.Add(media);
+                            Model.Media media = null;
+
+                            switch ((Model.Media.MediaType)Enum.Parse(typeof(Model.Media.MediaType), elem.Element("Type").Value))
+                            {
+                                case Model.Media.MediaType.MUSIC:
+                                    media = new Model.Music(elem.Element("Path").Value, Boolean.Parse(elem.Element("Stream").Value));
+                                    break;
+                                case Model.Media.MediaType.PICTURE:
+                                    media = new Model.Picture(elem.Element("Path").Value, Boolean.Parse(elem.Element("Stream").Value));
+                                    break;
+                                case Model.Media.MediaType.VIDEO:
+                                    media = new Model.Video(elem.Element("Path").Value, Boolean.Parse(elem.Element("Stream").Value));
+                                    break;
+                            }
+                            
+                            if (media != null)
+                                medias.Add(media);
                         }
                     }
                     playlistsCollection.Add(new Model.Playlist()
