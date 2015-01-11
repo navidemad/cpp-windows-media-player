@@ -30,7 +30,8 @@ namespace MyWindowsMediaPlayer.View
         class ViewDataContext : System.ComponentModel.INotifyPropertyChanged
         {
             private Link _CurrentPage;
-            public Link CurrentPage {
+            public Link CurrentPage
+            {
                 get { return _CurrentPage; }
                 set
                 {
@@ -40,6 +41,9 @@ namespace MyWindowsMediaPlayer.View
             }
 
             public List<Link> Pages { get; set; }
+
+            public System.Windows.Media.ImageSource FrFlagIcon { get; set; }
+            public System.Windows.Media.ImageSource EnFlagIcon { get; set; }
 
             public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
             public void RaisePropertyChanged(String property)
@@ -53,31 +57,34 @@ namespace MyWindowsMediaPlayer.View
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
             InitializeComponent();
+            SwitchToFrench(null, null);
 
             List<Link> pages = new List<Link> {
                 new Link { Name = Properties.Resources.player, Page = "MediaPlayer.xaml" },
                 new Link { Name = Properties.Resources.category, Page = "Menu.xaml" }
             };
 
-            DataContext = new ViewDataContext { CurrentPage = pages[0], Pages = pages };
-        }
-
-        private void RefreshTexts()
-        {
-            french_button.Content = Properties.Resources.french;
-            english_button.Content = Properties.Resources.english;
+            DataContext = new ViewDataContext
+            {
+                CurrentPage = pages[0],
+                Pages = pages,
+                FrFlagIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/frFlag_icon.png")),
+                EnFlagIcon = new System.Windows.Media.Imaging.BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "../../images/enFlag_icon.png"))
+            };
         }
 
         private void SwitchToEnglish(object sender, RoutedEventArgs e)
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
-            RefreshTexts();
+            french_button.Opacity = 0.4;
+            english_button.Opacity = 0.8;
         }
 
         private void SwitchToFrench(object send, RoutedEventArgs e)
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
-            RefreshTexts();
+            french_button.Opacity = 0.8;
+            english_button.Opacity = 0.4;
         }
 
     }

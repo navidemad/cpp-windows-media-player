@@ -7,7 +7,7 @@
       d:DesignHeight="300" d:DesignWidth="300">
 
     <DockPanel>
-        <ListBox BorderThickness="0,0,0,1" Background="#212121" DockPanel.Dock="Top" ItemsSource="{ Binding Pages }" SelectedItem="{ Binding CurrentPage }">
+        <ListBox Panel.ZIndex="1" BorderThickness="0,0,0,1" Background="#212121" DockPanel.Dock="Top" ItemsSource="{ Binding Pages }" SelectedItem="{ Binding CurrentPage }">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Resources>

@@ -4,21 +4,46 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:p="clr-namespace:MyWindowsMediaPlayer.Properties"
         Title="MyWindowsMediaPlayer" Height="650" Width="1024">
-
+    
     <DockPanel Background="#FF383838">
+
+        <DockPanel.Resources>
+            <Style x:Key="MyButtonStyle" TargetType="Button">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Opacity" Value="1.0" />
+                        <Setter Property="TextElement.Cursor" Value="Hand"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="False">
+                        <Setter Property="Opacity" Value="0.4" />
+                        <Setter Property="TextElement.Cursor" Value="Hand"/>
+                    </Trigger>
+                </Style.Triggers>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </DockPanel.Resources>
+        
         <ListBox BorderThickness="0,0,0,1" Background="#2d2d30" x:Name="NavigationPanel" DockPanel.Dock="Top" ItemsSource="{ Binding Pages }" SelectedItem="{ Binding CurrentPage }">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Style.Resources>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
                         <SolidColorBrush x:Key="{x:Static Member=SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
                     </Style.Resources>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
                     <TextBlock Foreground="#f1f1f1" FontSize="14" FontWeight="Light" Margin="7" Text="{ Binding Name }">
-                            <TextBlock.Style>
+                        <TextBlock.Style>
                             <Style>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={ RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem }}}" Value="True">
@@ -33,28 +58,26 @@
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
-                        </TextBlock>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" Margin="4" FlowDirection="LeftToRight" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-            </ListBox>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
 
-        <Grid x:Name="Languages" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="50" />
-            </Grid.ColumnDefinitions>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" Margin="4" FlowDirection="LeftToRight" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
 
-            <Button x:Name="french_button" Grid.Column="0" Content="{x:Static p:Resources.french}" Click="SwitchToFrench" />
-            <Button x:Name="english_button" Grid.Column="2" Content="{x:Static p:Resources.english}" Click="SwitchToEnglish" />
-        </Grid>
-
+        <Canvas Panel.ZIndex="2" x:Name="Languages" DockPanel.Dock="Top" Height="Auto" Width="Auto" HorizontalAlignment="Right">
+            <Button Panel.ZIndex="2" Canvas.Right="5" Canvas.Top="3" Width="32" Height="32" Style="{StaticResource MyButtonStyle}" x:Name="french_button" Background="Transparent" Padding="0" Margin="0" BorderThickness="0" Click="SwitchToFrench">
+                <Image Source="{ Binding FrFlagIcon }" />
+            </Button>
+            <Button Panel.ZIndex="2" Canvas.Right="43" Canvas.Top="3" Width="32" Height="32" Style="{StaticResource MyButtonStyle}" x:Name="english_button" Background="Transparent" Padding="0" Margin="0" BorderThickness="0" Click="SwitchToEnglish">
+                <Image Source="{ Binding EnFlagIcon }" />
+            </Button>
+        </Canvas>
+        
         <Frame Source="{ Binding CurrentPage.Page }" NavigationUIVisibility="Hidden" />
     </DockPanel>
     
