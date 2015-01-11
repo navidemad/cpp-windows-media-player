@@ -107,7 +107,7 @@
 
         <DataGrid CellStyle="{StaticResource Body_Content_DataGrid_Centering}" Grid.Row="1" AlternationCount="2" SelectionMode="Single" CanUserAddRows="False" HorizontalAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" Background="#FF383838" RowHeaderWidth="0" SelectedItem="{ Binding ViewModel.CurrentPlaylist }" ItemsSource="{ Binding ViewModel.Playlists, IsAsync=True }" HeadersVisibility="None" AutoGenerateColumns="false">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="False" Binding="{ Binding Name }" Header="{x:Static p:Resources.name_of_playlist}" Width="*" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{ Binding Name }" Header="{x:Static p:Resources.name_of_playlist}" Width="*" />
             </DataGrid.Columns>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">

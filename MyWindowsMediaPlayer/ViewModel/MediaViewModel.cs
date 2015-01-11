@@ -79,10 +79,11 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         public void PlayPlaylist(Model.Playlist playlist)
         {
-            if (playlist == null)
+            if (playlist == null || playlist.Medias.Count() == 0)
                 return;
 
-            // handle playlists;
+            PlayMedia(playlist.Medias[playlist.CurrentIndex]);
+
             _IsPlayingPlaylist = true;
         }
 
@@ -91,7 +92,6 @@ namespace MyWindowsMediaPlayer.ViewModel
             if (media == null || (media.Stream == false && System.IO.File.Exists(media.Path) == false))
                 return;
 
-            Console.WriteLine("playMedia");
             switch (media.Type)
             {
                 case Model.Media.MediaType.MUSIC:
@@ -182,7 +182,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             if (_IsPlayingPlaylist)
             {
-                System.Reflection.MethodInfo method = Type.GetType("ViewModel.PlayListViewModel").GetMethod(methodName);
+                System.Reflection.MethodInfo method = typeof(PlayListViewModel).GetMethod(methodName);
                 PlayPlaylist(method.Invoke(PlayListViewModel.getInstance(), new object[] {}) as Model.Playlist);
             }
             else
