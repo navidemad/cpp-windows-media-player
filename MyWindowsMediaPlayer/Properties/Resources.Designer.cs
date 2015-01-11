@@ -22,7 +22,7 @@ namespace MyWindowsMediaPlayer.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace MyWindowsMediaPlayer.Properties {
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyWindowsMediaPlayer.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,309 @@ namespace MyWindowsMediaPlayer.Properties {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à add.
+        /// </summary>
+        public static string add {
+            get {
+                return ResourceManager.GetString("add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à add_image_from_computer.
+        /// </summary>
+        public static string add_image_from_computer {
+            get {
+                return ResourceManager.GetString("add_image_from_computer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à add_music_from_computer.
+        /// </summary>
+        public static string add_music_from_computer {
+            get {
+                return ResourceManager.GetString("add_music_from_computer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à add_video_from_computer.
+        /// </summary>
+        public static string add_video_from_computer {
+            get {
+                return ResourceManager.GetString("add_video_from_computer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à album.
+        /// </summary>
+        public static string album {
+            get {
+                return ResourceManager.GetString("album", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à artist.
+        /// </summary>
+        public static string artist {
+            get {
+                return ResourceManager.GetString("artist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à category.
+        /// </summary>
+        public static string category {
+            get {
+                return ResourceManager.GetString("category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à create.
+        /// </summary>
+        public static string create {
+            get {
+                return ResourceManager.GetString("create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à current_media.
+        /// </summary>
+        public static string current_media {
+            get {
+                return ResourceManager.GetString("current_media", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à date.
+        /// </summary>
+        public static string date {
+            get {
+                return ResourceManager.GetString("date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à delete.
+        /// </summary>
+        public static string delete {
+            get {
+                return ResourceManager.GetString("delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à down.
+        /// </summary>
+        public static string down {
+            get {
+                return ResourceManager.GetString("down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à english.
+        /// </summary>
+        public static string english {
+            get {
+                return ResourceManager.GetString("english", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à file.
+        /// </summary>
+        public static string file {
+            get {
+                return ResourceManager.GetString("file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à french.
+        /// </summary>
+        public static string french {
+            get {
+                return ResourceManager.GetString("french", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à images.
+        /// </summary>
+        public static string images {
+            get {
+                return ResourceManager.GetString("images", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à list_of_playlist.
+        /// </summary>
+        public static string list_of_playlist {
+            get {
+                return ResourceManager.GetString("list_of_playlist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à musics.
+        /// </summary>
+        public static string musics {
+            get {
+                return ResourceManager.GetString("musics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à name_of_playlist.
+        /// </summary>
+        public static string name_of_playlist {
+            get {
+                return ResourceManager.GetString("name_of_playlist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à path.
+        /// </summary>
+        public static string path {
+            get {
+                return ResourceManager.GetString("path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à player.
+        /// </summary>
+        public static string player {
+            get {
+                return ResourceManager.GetString("player", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à playlist.
+        /// </summary>
+        public static string playlists {
+            get {
+                return ResourceManager.GetString("playlists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à remove_selected_image.
+        /// </summary>
+        public static string remove_selected_image {
+            get {
+                return ResourceManager.GetString("remove_selected_image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à remove_selected_music.
+        /// </summary>
+        public static string remove_selected_music {
+            get {
+                return ResourceManager.GetString("remove_selected_music", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à remove_selected_video.
+        /// </summary>
+        public static string remove_selected_video {
+            get {
+                return ResourceManager.GetString("remove_selected_video", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à search.
+        /// </summary>
+        public static string search {
+            get {
+                return ResourceManager.GetString("search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à title.
+        /// </summary>
+        public static string title {
+            get {
+                return ResourceManager.GetString("title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à type.
+        /// </summary>
+        public static string type {
+            get {
+                return ResourceManager.GetString("type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à up.
+        /// </summary>
+        public static string up {
+            get {
+                return ResourceManager.GetString("up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à url_image.
+        /// </summary>
+        public static string url_image {
+            get {
+                return ResourceManager.GetString("url_image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à url_music.
+        /// </summary>
+        public static string url_music {
+            get {
+                return ResourceManager.GetString("url_music", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à url_video.
+        /// </summary>
+        public static string url_video {
+            get {
+                return ResourceManager.GetString("url_video", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à videos.
+        /// </summary>
+        public static string videos {
+            get {
+                return ResourceManager.GetString("videos", resourceCulture);
             }
         }
     }

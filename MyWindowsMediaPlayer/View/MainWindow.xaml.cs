@@ -38,7 +38,7 @@ namespace MyWindowsMediaPlayer.View
                     RaisePropertyChanged("CurrentPage");
                 }
             }
-            
+
             public List<Link> Pages { get; set; }
 
             public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
@@ -51,14 +51,33 @@ namespace MyWindowsMediaPlayer.View
 
         public MainWindow()
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
             InitializeComponent();
 
             List<Link> pages = new List<Link> {
-                new Link { Name = "Player", Page = "MediaPlayer.xaml" },
-                new Link { Name = "Catégories", Page = "Menu.xaml" }
+                new Link { Name = Properties.Resources.player, Page = "MediaPlayer.xaml" },
+                new Link { Name = Properties.Resources.category, Page = "Menu.xaml" }
             };
 
             DataContext = new ViewDataContext { CurrentPage = pages[0], Pages = pages };
+        }
+
+        private void RefreshTexts()
+        {
+            french_button.Content = Properties.Resources.french;
+            english_button.Content = Properties.Resources.english;
+        }
+
+        private void SwitchToEnglish(object sender, RoutedEventArgs e)
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+            RefreshTexts();
+        }
+
+        private void SwitchToFrench(object send, RoutedEventArgs e)
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
+            RefreshTexts();
         }
 
     }

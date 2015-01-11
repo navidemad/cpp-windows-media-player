@@ -63,6 +63,7 @@ namespace MyWindowsMediaPlayer.View
                 MediaControl.Visibility = System.Windows.Visibility.Visible;
 
                 window.NavigationPanel.Visibility = System.Windows.Visibility.Visible;
+                window.Languages.Visibility = System.Windows.Visibility.Visible;
                 window.WindowStyle = WindowStyle.SingleBorderWindow;
                 window.WindowState = WindowState.Normal;
             }
@@ -78,6 +79,7 @@ namespace MyWindowsMediaPlayer.View
                 MediaControl.Visibility = System.Windows.Visibility.Collapsed;
 
                 window.NavigationPanel.Visibility = System.Windows.Visibility.Collapsed;
+                window.Languages.Visibility = System.Windows.Visibility.Collapsed;
                 window.WindowStyle = WindowStyle.None;
                 window.WindowState = WindowState.Maximized;
             }

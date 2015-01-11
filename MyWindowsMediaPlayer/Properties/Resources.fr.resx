@@ -118,102 +118,102 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="add" xml:space="preserve">
-    <value>add</value>
+    <value>Ajouter</value>
   </data>
   <data name="add_image_from_computer" xml:space="preserve">
-    <value>add_image_from_computer</value>
+    <value>Ajouter une image depuis l'ordinateur</value>
   </data>
   <data name="add_music_from_computer" xml:space="preserve">
-    <value>add_music_from_computer</value>
+    <value>Ajouter une musique depuis l'ordinateur</value>
   </data>
   <data name="add_video_from_computer" xml:space="preserve">
-    <value>add_video_from_computer</value>
+    <value>Ajouter une vidéo depuis l'ordinateur</value>
   </data>
   <data name="album" xml:space="preserve">
-    <value>album</value>
+    <value>Album</value>
   </data>
   <data name="artist" xml:space="preserve">
-    <value>artist</value>
+    <value>Artiste</value>
   </data>
   <data name="category" xml:space="preserve">
-    <value>category</value>
+    <value>Catégories</value>
   </data>
   <data name="create" xml:space="preserve">
-    <value>create</value>
+    <value>Créer</value>
   </data>
   <data name="current_media" xml:space="preserve">
-    <value>current_media</value>
+    <value>Media actuel</value>
   </data>
   <data name="date" xml:space="preserve">
-    <value>date</value>
+    <value>Date</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>delete</value>
+    <value>Supprimer</value>
   </data>
   <data name="down" xml:space="preserve">
-    <value>down</value>
+    <value>Descendre</value>
   </data>
   <data name="english" xml:space="preserve">
-    <value>english</value>
+    <value>Anglais</value>
   </data>
   <data name="file" xml:space="preserve">
-    <value>file</value>
+    <value>Fichier</value>
   </data>
   <data name="french" xml:space="preserve">
-    <value>french</value>
+    <value>Français</value>
   </data>
   <data name="images" xml:space="preserve">
-    <value>images</value>
+    <value>Images</value>
   </data>
   <data name="list_of_playlist" xml:space="preserve">
-    <value>list_of_playlist</value>
+    <value>Liste de playlists</value>
   </data>
   <data name="musics" xml:space="preserve">
-    <value>musics</value>
+    <value>Musiques</value>
   </data>
   <data name="name_of_playlist" xml:space="preserve">
-    <value>name_of_playlist</value>
+    <value>Nom de la playlist</value>
   </data>
   <data name="path" xml:space="preserve">
-    <value>path</value>
+    <value>Path</value>
   </data>
   <data name="player" xml:space="preserve">
-    <value>player</value>
+    <value>Player</value>
   </data>
   <data name="playlists" xml:space="preserve">
-    <value>playlist</value>
+    <value>Playlists</value>
   </data>
   <data name="remove_selected_image" xml:space="preserve">
-    <value>remove_selected_image</value>
+    <value>Supprimer l'image sélectionnée</value>
   </data>
   <data name="remove_selected_music" xml:space="preserve">
-    <value>remove_selected_music</value>
+    <value>Supprimer la musique sélectionnée</value>
   </data>
   <data name="remove_selected_video" xml:space="preserve">
-    <value>remove_selected_video</value>
+    <value>Supprimer la vidéo sélectionnée</value>
   </data>
   <data name="search" xml:space="preserve">
-    <value>search</value>
+    <value>Rechercher</value>
   </data>
   <data name="title" xml:space="preserve">
-    <value>title</value>
+    <value>Titre</value>
   </data>
   <data name="type" xml:space="preserve">
-    <value>type</value>
+    <value>Type</value>
   </data>
   <data name="up" xml:space="preserve">
-    <value>up</value>
+    <value>Monter</value>
   </data>
   <data name="url_image" xml:space="preserve">
-    <value>url_image</value>
+    <value>URL de l'image</value>
   </data>
   <data name="url_music" xml:space="preserve">
-    <value>url_music</value>
+    <value>URL de la musique</value>
   </data>
   <data name="url_video" xml:space="preserve">
-    <value>url_video</value>
+    <value>URL de la video</value>
   </data>
   <data name="videos" xml:space="preserve">
-    <value>videos</value>
+    <value>Videos</value>
   </data>
 </root>
